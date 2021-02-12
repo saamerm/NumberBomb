@@ -133,4 +133,7 @@
       <Name>NumberBomb</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LogoWithBackground.png" />
+  </ItemGroup>
 </Project>
