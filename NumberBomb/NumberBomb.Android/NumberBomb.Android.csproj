@@ -84,11 +84,11 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
-    <AndroidResource Include="Resources\drawable\SplashScreen.png">
+    <AndroidResource Include="Resources\drawable\splash_screen.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\SplashScreen.png">
+    <AndroidResource Include="Resources\drawable\SplashScreen.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -109,10 +109,6 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\SplashScreen.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\splash_screen.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
