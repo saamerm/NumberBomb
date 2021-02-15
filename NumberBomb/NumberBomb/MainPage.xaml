@@ -26,8 +26,10 @@
                     WidthRequest="129"
                     HeightRequest="46"
                     Padding="0,10, 0, 10"
-                    Margin="60,84,60,0"
-                    CornerRadius="20"/>
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,84,0,0"
+                    CornerRadius="23"/>
         </StackLayout>          
     </StackLayout>
 </ContentPage>
