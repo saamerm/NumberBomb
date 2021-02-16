@@ -4,22 +4,31 @@
              x:Class="NumberBomb.MainPage">
     <StackLayout>
         <StackLayout Padding="40,99,40,0">
-            <Label Text="NumberBomb"
-                   FontSize="36"
+            <Label FontSize="36"
                    TextColor="Black"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center"
+                   FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Label Text="Guess the number to difuse the bomb"
                    TextColor="Black"
                    Opacity=".5"
                    FontSize="10"
+                   FontFamily="PatrickFont"
                    HorizontalTextAlignment="Center"/>
             <Label Text="Enter your gamer tag"
-                       Padding="0,105,0,14"
-                       FontSize="20"
-                       TextColor="Black"
-                       HorizontalTextAlignment="Center"/>
+                   FontFamily="PatrickFont"
+                   Padding="0,105,0,14"
+                   FontSize="20"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"/>
             <Entry WidthRequest="200"
-                       HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"/>
             <Button Text="Enter" 
                     BackgroundColor="Black"
                     TextColor="White"
@@ -28,6 +37,7 @@
                     Padding="0,10, 0, 10"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
+                    FontFamily="PatrickFont"
                     Margin="0,84,0,0"
                     CornerRadius="23"/>
         </StackLayout>          
