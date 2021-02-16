@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.MainPage">
-    <StackLayout>
-        <StackLayout Padding="40,99,40,0">
+    <Grid RowDefinitions="auto, auto">
+        <StackLayout Grid.Row="0"
+                     Padding="40,99,40,0">
             <Label FontSize="36"
                    TextColor="Black"
                    HorizontalTextAlignment="Center"
@@ -40,6 +41,12 @@
                     FontFamily="PatrickFont"
                     Margin="0,84,0,0"
                     CornerRadius="23"/>
-        </StackLayout>          
-    </StackLayout>
+        </StackLayout>
+            <Image Grid.Row="1"
+                   Margin="5,0,0,0"
+                   Source="bomb.png"
+                   HorizontalOptions="Start"
+                   WidthRequest="138"
+                   HeightRequest="138"/>
+    </Grid>
 </ContentPage>
