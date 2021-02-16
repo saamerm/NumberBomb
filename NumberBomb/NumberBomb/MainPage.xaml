@@ -2,23 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.MainPage">
-
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <StackLayout Padding="40,99,40,0">
+            <Label Text="NumberBomb"
+                   FontSize="36"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Guess the number to difuse the bomb"
+                   TextColor="Black"
+                   Opacity=".5"
+                   FontSize="10"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Enter your gamer tag"
+                       Padding="0,105,0,14"
+                       FontSize="20"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"/>
+            <Entry WidthRequest="200"
+                       HorizontalOptions="Center"/>
+            <Button Text="Enter" 
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    WidthRequest="129"
+                    HeightRequest="46"
+                    Padding="0,10, 0, 10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,84,0,0"
+                    CornerRadius="23"/>
+        </StackLayout>          
     </StackLayout>
-
 </ContentPage>
