@@ -28,7 +28,8 @@
                    FontSize="20"
                    TextColor="Black"
                    HorizontalTextAlignment="Center"/>
-            <Entry WidthRequest="200"
+            <Entry x:Name="NameEntry"
+                   WidthRequest="200"
                    HorizontalOptions="Center"/>
             <Button Text="Enter" 
                     BackgroundColor="Black"
@@ -40,7 +41,8 @@
                     VerticalOptions="Center"
                     FontFamily="PatrickFont"
                     Margin="0,84,0,0"
-                    CornerRadius="23"/>
+                    CornerRadius="23"
+                    Clicked="OnButtonClicked"/>
         </StackLayout>
             <Image Grid.Row="1"
                    Margin="5,0,0,0"
