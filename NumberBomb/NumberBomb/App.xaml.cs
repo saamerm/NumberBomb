@@ -10,7 +10,7 @@ namespace NumberBomb
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new GamerTagPage();
         }
 
         protected override void OnStart()

@@ -10,9 +10,9 @@ using NumberBomb.ViewModels;
 
 namespace NumberBomb
 {
-    public partial class MainPage : ContentPage
+    public partial class GamerTagPage : ContentPage
     { 
-        public MainPage()
+        public GamerTagPage()
         {
             InitializeComponent();
             BindingContext = new GamerTagViewModel();
