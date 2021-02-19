@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using NumberBomb.ViewModels;
 
 namespace NumberBomb
 {
@@ -14,12 +15,7 @@ namespace NumberBomb
         public MainPage()
         {
             InitializeComponent();
-            NameEntry.Text = Preferences.Get("NameTag", string.Empty);
-        }
-
-        public async void OnButtonClicked(object sender, EventArgs e)
-        {
-            Preferences.Set("NameTag", NameEntry.Text);
+            BindingContext = new GamerTagViewModel();
         }
     }
 }
