@@ -5,13 +5,14 @@ using Xamarin.Forms;
 
 namespace NumberBomb
 {
-    public partial class GamerTagPage : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public GamerTagPage()
+        public HomePage()
         {
             InitializeComponent();
 
-            BindingContext = new GamerTagViewModel();
+            BindingContext = new HomeViewModel();
+
         }
     }
 }

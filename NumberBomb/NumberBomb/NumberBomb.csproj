@@ -29,4 +29,12 @@
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="GamerTagPage.xaml.cs">
+      <DependentUpon>GamerTagPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
