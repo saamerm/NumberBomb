@@ -2,54 +2,55 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.GamerTagPage">
-    <Grid RowDefinitions="auto, auto">
-        <StackLayout Grid.Row="0"
-                     Padding="40,99,40,0">
-            <Label FontSize="36"
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"
-                   FontFamily="PatrickFont">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Number"/>
-                        <Span Text="BOMB" TextColor="Red"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="Guess the number to difuse the bomb"
-                   TextColor="Black"
-                   Opacity=".5"
-                   FontSize="10"
-                   FontFamily="PatrickFont"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="Enter your gamer tag"
-                   FontFamily="PatrickFont"
-                   Padding="0,105,0,14"
-                   FontSize="20"
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"/>
-            <Entry x:Name="NameEntry"
-                   Text="{Binding GamerTag}"
-                   WidthRequest="200"
-                   HorizontalOptions="Center"/>
-            <Button Text="Enter" 
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    WidthRequest="129"
-                    HeightRequest="46"
-                    Padding="0,10, 0, 10"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    FontFamily="PatrickFont"
-                    Margin="0,84,0,0"
-                    CornerRadius="23"
-                    Command = "{Binding ButtonCommand}"/>
-        </StackLayout>
-            <Image Grid.Row="1"
-                   Margin="5,0,0,0"
-                   Source="bomb.png"
-                   HorizontalOptions="Start"
-                   WidthRequest="138"
-                   HeightRequest="138"/>
-    </Grid>
+    <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout Padding="40,99,40,0">
+                <Label   FontSize="36"
+                         TextColor="Black"
+                         HorizontalTextAlignment="Center"
+                         FontFamily="PatrickFont">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Number"/>
+                            <Span Text="BOMB" TextColor="Red"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Guess the number to diffuse the bomb"
+                       TextColor="Black"
+                       Opacity=".5"
+                       FontSize="12"
+                       FontFamily="PatrickFont"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Enter your gamer tag"
+                       FontFamily="PatrickFont"
+                       Padding="0,105,0,14"
+                       FontSize="20"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"/>
+                <Entry x:Name="NameEntry"
+                       Text="{Binding GamerTag}"
+                       WidthRequest="200"
+                       HorizontalOptions="Center"/>
+                <Button Text="Enter" 
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        WidthRequest="129"
+                        HeightRequest="46"
+                        Padding="0,10, 0, 10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontFamily="PatrickFont"
+                        Margin="0,84,0,0"
+                        CornerRadius="23"
+                        Command = "{Binding ButtonCommand}"/>
+            </StackLayout>
+            <Image 
+                        Margin="5,0,0,14"
+                        Source="bomb.png"
+                        HorizontalOptions="Start"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="138"
+                        HeightRequest="138"/>
+        
+    </StackLayout>
 </ContentPage>
