@@ -22,9 +22,13 @@
   <ItemGroup>
     <None Remove="Fonts\PatrickHand-Regular.ttf" />
     <None Remove="bomb.svg" />
+    <None Remove="Fonts\FontAwesome5-Regular-400.otf" />
+    <None Remove="Fonts\FontAwesome5Solid.otf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
+    <EmbeddedResource Include="Fonts\FontAwesome5Regular.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />

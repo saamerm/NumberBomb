@@ -1,15 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
              x:Class="NumberBomb.HomePage">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-             <StackLayout Grid.Row="0"
-                          Margin="26,192,26,0">
-                 <Label FontSize="48"
-                       TextColor="Black"
-                       HorizontalTextAlignment="Center"
-                       FontFamily="PatrickFont">
+            <StackLayout Orientation="Horizontal">
+                 <Image  WidthRequest="24"
+                         HeightRequest="24"
+                         Margin="26,26,0,0"
+                         HorizontalOptions="StartAndExpand"> 
+                     <Image.Source>
+                        <FontImageSource Color="#343434"
+                                         FontFamily="FontAwesome5Regular"
+                                         Glyph="&#xf007;"/>
+                       </Image.Source>
+                  </Image>
+                  <Image  WidthRequest="24"
+                          HeightRequest="24"
+                          Margin="0,25,26,0"
+                          HorizontalOptions="EndAndExpand">
+                        <Image.Source>
+                            <FontImageSource Color="#343434"
+                                             FontFamily="FontAwesome5Solid"
+                                             Glyph="&#xf05a;"/>
+                        </Image.Source>
+                  </Image>
+             </StackLayout>
+             <StackLayout Margin="26,162,26,0">
+                 <Label   FontSize="48"
+                          TextColor="Black"
+                          HorizontalTextAlignment="Center"
+                          FontFamily="PatrickFont">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Number"/>
