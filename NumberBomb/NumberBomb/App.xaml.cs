@@ -20,7 +20,7 @@ namespace NumberBomb
             }
             else
             {
-                MainPage = new HomePage();
+                MainPage = new NavigationPage(new HomePage());
             }
         }
 
