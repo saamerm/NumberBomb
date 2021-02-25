@@ -17,7 +17,7 @@
                        </Image.Source>
                        <Image.GestureRecognizers>
                             <TapGestureRecognizer
-                                Tapped="UserIcon_OnTapped"
+                                Command = "{Binding UserIcon_OnTapped}"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                   </Image>
@@ -32,7 +32,7 @@
                         </Image.Source>
                          <Image.GestureRecognizers>
                             <TapGestureRecognizer
-                                Tapped="InfoIcon_OnTapped"
+                                Command ="{Binding InfoIcon_OnTapped}"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                   </Image>
@@ -65,7 +65,7 @@
                         FontFamily="PatrickFont"
                         Margin="0,55,0,0"
                         CornerRadius="23"
-                        Clicked="StartButton"/>
+                        Command = "{Binding StartButtonCommand}"/>
                 <Button Text="Leaderboard" 
                         BackgroundColor="Black"
                         TextColor="White"
@@ -77,7 +77,7 @@
                         FontFamily="PatrickFont"
                         Margin="0,18,0,0 "
                         CornerRadius="23"
-                        Clicked="LeaderBoardButton"/>
+                        Command = "{Binding LeaderBoardButtonCommand}"/>
             </StackLayout>
             <Image 
                         Margin="5,0,0,14"
