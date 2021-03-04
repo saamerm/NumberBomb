@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.App">
     <Application.Resources>
-
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="White"/>
+            <Setter Property="BarTextColor" Value="Black"/>
+        </Style>
     </Application.Resources>
 </Application>

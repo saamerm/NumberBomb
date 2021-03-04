@@ -1,10 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NumberBomb.InfoPage">
+             x:Class="NumberBomb.InfoPage"
+             BackgroundColor="#EFEFEF">
+    <NavigationPage.TitleView>
+        <Label           x:Name="TitleLabel"
+                         FontSize="25"
+                         TextColor="Black"
+                         VerticalOptions="CenterAndExpand"
+                         FontFamily="PatrickFont">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Number"/>
+                            <Span Text="BOMB" TextColor="Red"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="InfoPage" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <StackLayout Margin="46,80,46,53">
+             <Label Text="Game rules:&#10;Find the correct number in a given range, The score is based on the remian numbers that you have not guessed, so the less time you guess, the higher your score is"
+                        FontFamily="PatrickFont"
+                        FontSize="15"/>
+
+            <Label Text="Atrribution:&#10;This game is developed by The First Prototype. We are a product development company that helps launch products that customers love, and we specialize in mobile app development."
+                        FontFamily="PatrickFont"
+                        FontSize="15"
+                        Padding="0,40,0,60"/> 
+                   
+
+            <Label Text="Image Attributions&#10;Some icons made by Freepik from www.flaticon.com"
+                        FontFamily="PatrickFont"
+                        FontSize="12"
+                        Padding="0,40,0,0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
