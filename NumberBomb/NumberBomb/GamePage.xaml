@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NumberBomb.GamePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="NumberBomb.GamePage"
+             BackgroundColor="#EFEFEF">
     <NavigationPage.TitleView>
          <StackLayout Orientation="Horizontal">
             <Label  x:Name="TitleLabel"
@@ -34,6 +38,54 @@
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-       
+        <StackLayout>
+            <Label 
+                   FontSize="18"
+                   FontFamily="PatrickFont"
+                   HorizontalTextAlignment="End"
+                   Padding="0, 11, 35, 0">
+                <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Remain: "/>
+                            <Span Text="10" x:Name="chances"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+            </Label>
+            <Label Text="Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb
+                        &#10; &#10;But you only have 10 chances to guess it right!"
+                        FontFamily="PatrickFont"
+                        HorizontalTextAlignment="Center"
+                        FontSize="18"
+                        Padding="26,63,17,63"/>
+            <Entry x:Name="GuessEntry"
+                       Keyboard="Numeric"
+                       WidthRequest="80"
+                       Margin="0,0,0,17"
+                       HorizontalOptions="Center"/>
+            <yummy:PancakeView
+                          HeightRequest="50"
+                          HorizontalOptions="Center"
+                          CornerRadius="18"
+                          BackgroundColor="#343434">
+                          <yummy:PancakeView.Shadow>
+                            <yummy:DropShadow
+                            Offset="0,4"
+                            Color="Black"
+                            BlurRadius="4"/>
+                          </yummy:PancakeView.Shadow>
+                          <yummy:PancakeView.Border>
+                            <yummy:Border Color="#0A1B202C" Thickness="1"/>
+                          </yummy:PancakeView.Border>               
+                <Button Text="SUBMIT"
+                            FontSize="24"
+                            BackgroundColor="#343434"
+                            TextColor="White"
+                            WidthRequest="240.5"
+                            HeightRequest="66"
+                            FontFamily="PatrickFont"
+                            CornerRadius="18"
+                            Command = "{Binding ButtonCommand}"/>
+            </yummy:PancakeView>
+            </StackLayout>    
     </ContentPage.Content>
 </ContentPage>
