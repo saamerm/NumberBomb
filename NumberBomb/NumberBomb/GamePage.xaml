@@ -1,8 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NumberBomb.GamePage">
+    <NavigationPage.TitleView>
+         <StackLayout Orientation="Horizontal">
+            <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Image HorizontalOptions="EndAndExpand"
+                   VerticalOptions="Center"
+                   Margin="0,0,12,0"
+                   WidthRequest="16"
+                   HeightRequest="20">
+                <Image.Source>
+                    <FontImageSource Color="#343434"
+                                     FontFamily="FontAwesome5Solid"
+                                     Glyph="&#xf01e;"/>
+                </Image.Source>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                              Command = "{Binding UserIcon_OnTapped}"
+                              NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+            </Image>
+         </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="GamePage" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </StackLayout>
+       
     </ContentPage.Content>
 </ContentPage>
