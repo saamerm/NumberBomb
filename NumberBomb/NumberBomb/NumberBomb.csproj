@@ -41,5 +41,8 @@
     <Compile Update="GamerTagPage.xaml.cs">
       <DependentUpon>GamerTagPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="WinPage.xaml.cs">
+      <DependentUpon>WinPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
