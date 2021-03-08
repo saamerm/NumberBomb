@@ -10,6 +10,8 @@ namespace NumberBomb.ViewModels
         public string _number;
         public int RandomNumber;
         public int GuessedValue;
+        public int _chances = 10;
+        public int remainNumber;
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand CheckCommand { get; set; }
 
@@ -20,6 +22,16 @@ namespace NumberBomb.ViewModels
             {
                 _number = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
+            }
+        }
+
+         public int ChancesRemaining
+        {
+            get => _chances;
+            set
+            {
+                _chances = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
             }
         }
 
@@ -40,6 +52,21 @@ namespace NumberBomb.ViewModels
             if (RandomNumber == GuessedValue)
             {
                 App.Current.MainPage.Navigation.PushAsync(new WinPage());
+            }
+            else
+            {
+                if(ChancesRemaining == 1)
+                {
+                    if (RandomNumber != GuessedValue)
+                    {
+                        App.Current.MainPage.Navigation.PushAsync(new LosePage());
+
+                    }
+                }
+                else
+                {
+                    ChancesRemaining -= 1;
+                }               
             }
         }
     }

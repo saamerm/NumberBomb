@@ -46,7 +46,7 @@
                 <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Remain: "/>
-                            <Span Text="10" x:Name="chances"/>
+                            <Span Text="{Binding ChancesRemaining}"/>
                         </FormattedString>
                     </Label.FormattedText>
             </Label>
