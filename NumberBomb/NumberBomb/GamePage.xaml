@@ -50,8 +50,7 @@
                         </FormattedString>
                     </Label.FormattedText>
             </Label>
-            <Label Text="Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb
-                        &#10; &#10;But you only have 10 chances to guess it right!"
+            <Label Text="{Binding Hint}"
                         FontFamily="PatrickFont"
                         HorizontalTextAlignment="Center"
                         FontSize="18"
