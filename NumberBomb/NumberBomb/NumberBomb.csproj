@@ -44,5 +44,8 @@
     <Compile Update="WinPage.xaml.cs">
       <DependentUpon>WinPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="LosePage.xaml.cs">
+      <DependentUpon>LosePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
