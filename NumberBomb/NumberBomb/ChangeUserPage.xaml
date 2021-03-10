@@ -2,9 +2,76 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.ChangeUserPage">
+     <NavigationPage.TitleView>
+         <StackLayout Orientation="Horizontal">
+            <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>           
+         </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="ChangeUserPage" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout Padding="40,39,40,0">
+                <Label   FontSize="36"
+                         TextColor="Black"
+                         HorizontalTextAlignment="Center"
+                         FontFamily="PatrickFont">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Number"/>
+                            <Span Text="BOMB" TextColor="Red"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Guess the number to diffuse the bomb"
+                       TextColor="Black"
+                       Opacity=".5"
+                       FontSize="12"
+                       FontFamily="PatrickFont"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Switch your gamer tag"
+                       FontFamily="PatrickFont"
+                       Padding="0,70,0,14"
+                       FontSize="20"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"/>
+                <Entry x:Name="NameEntry"
+                       Text="{Binding ChangeName}"
+                       WidthRequest="200"
+                       HorizontalOptions="Center"/>
+                <Button Text="Save" 
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        FontSize="18"
+                        WidthRequest="129"
+                        HeightRequest="46"
+                        Padding="0,10, 0, 10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontFamily="PatrickFont"
+                        Margin="0,64,0,0"
+                        CornerRadius="23"
+                        Command = "{Binding SaveButtonCommand}"/>
+            </StackLayout>
+            <Image 
+                        Margin="5,0,0,14"
+                        Source="bomb.png"
+                        HorizontalOptions="Start"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="138"
+                        HeightRequest="138"/>
+        
+    </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+
