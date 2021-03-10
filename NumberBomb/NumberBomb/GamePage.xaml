@@ -30,7 +30,7 @@
                 </Image.Source>
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                              Command = "{Binding UserIcon_OnTapped}"
+                              Command = "{Binding RefreshIcon_OnTapped}"
                               NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
             </Image>
