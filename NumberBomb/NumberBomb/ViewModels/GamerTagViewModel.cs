@@ -34,8 +34,11 @@ namespace NumberBomb.ViewModels
 
         private void ButtonCommandExecute(object obj)
         {
-            Preferences.Set("NameTag", GamerTag);
-            App.Current.MainPage = new NavigationPage(new HomePage());
+            if (!String.IsNullOrEmpty(GamerTag))
+            {
+                Preferences.Set("NameTag", GamerTag);
+                App.Current.MainPage = new NavigationPage(new HomePage());
+            }
         }
     }
 }
