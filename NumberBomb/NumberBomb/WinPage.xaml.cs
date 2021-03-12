@@ -20,16 +20,6 @@ namespace NumberBomb
             newScore = score;
 
             label.Text = "Your remaining chances was " +  _chances + " and your highest score is " + newScore + ".";
-
-
-            if (Device.RuntimePlatform.Equals("Android"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
-            }
-            else if (Device.RuntimePlatform.Equals("iOS"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }
         }
     }
 }

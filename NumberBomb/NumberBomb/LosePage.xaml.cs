@@ -12,16 +12,6 @@ namespace NumberBomb
             InitializeComponent();
 
             BindingContext = new LosePageViewModel();
-
-            if (Device.RuntimePlatform.Equals("Android"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
-            }
-            else if (Device.RuntimePlatform.Equals("iOS"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }
-
         }
     }
 }

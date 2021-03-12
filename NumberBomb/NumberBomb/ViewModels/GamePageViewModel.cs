@@ -11,6 +11,7 @@ namespace NumberBomb.ViewModels
     {
         public string _number;
         public string _text;
+        public string _gamerTagName;
         public int _score;
         public int _newScore;
         public int RandomNumber;
@@ -20,6 +21,7 @@ namespace NumberBomb.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
+        public ICommand BackButtonClicked { get; set; }
         Random randomNumberGenrator;
 
         public string Hint
@@ -55,8 +57,9 @@ namespace NumberBomb.ViewModels
         public GamePageViewModel()
         {
             randomNumberGenrator = new Random();
+            _gamerTagName = Preferences.Get("NameTag", string.Empty);
             _score = Preferences.Get("_chances", 0);
-            _text = "Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            _text = _gamerTagName + ", you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             if (GuessEntry == null)
             {
@@ -64,6 +67,16 @@ namespace NumberBomb.ViewModels
             }
             CheckCommand = new Command(CheckCommandExecute);
             RefreshIcon_OnTapped = new Command(RefreshIconCommandExecute);
+            BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+        }
+
+        private async void BackButtonClickedCommandExecute(object obj)
+        {
+            var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
+            if (response == true)
+            {
+                Application.Current.MainPage.Navigation.PopAsync();
+            }
         }
 
         private void Reset()
@@ -71,7 +84,7 @@ namespace NumberBomb.ViewModels
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             _chances = 10;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
-            _text = "Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            _text = _gamerTagName + ", you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hint)));
             _number = "0";
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
@@ -107,11 +120,11 @@ namespace NumberBomb.ViewModels
             {
                 if(GuessedValue < RandomNumber)
                 {
-                    Hint = "Roboto, " + GuessEntry + " is not the key \n Please enter a number between " + GuessEntry + " - 100";
+                    Hint = _gamerTagName  + ", " + GuessEntry + " is not the key \n Please enter a number between " + GuessEntry + " - 100";
                 }
                 else
                 {
-                    Hint = "Roboto, " + GuessEntry + " is not the key \n Please enter a number between 1 - " + GuessEntry;
+                    Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between 1 - " + GuessEntry;
                 }
 
                 if (ChancesRemaining == 1)

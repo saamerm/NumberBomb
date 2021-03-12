@@ -8,6 +8,7 @@
             <StackLayout Orientation="Horizontal">
                  <ImageButton  WidthRequest="24"
                          HeightRequest="24"
+                         BackgroundColor="White"
                          Margin="26,26,0,0"
                          Command = "{Binding UserIcon_OnTapped}"                         
                          HorizontalOptions="StartAndExpand">
@@ -21,6 +22,7 @@
                           HeightRequest="24"
                           Command ="{Binding InfoIcon_OnTapped}"
                           Margin="0,25,26,0"
+                          BackgroundColor="White"
                           HorizontalOptions="EndAndExpand">
                         <ImageButton.Source>
                             <FontImageSource Color="#343434"
