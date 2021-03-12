@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
@@ -10,6 +11,8 @@ namespace NumberBomb.ViewModels
     {
         public string _number;
         public string _text;
+        public int _score;
+        public int _newScore;
         public int RandomNumber;
         public int GuessedValue;
         public int _chances = 10;
@@ -52,6 +55,7 @@ namespace NumberBomb.ViewModels
         public GamePageViewModel()
         {
             randomNumberGenrator = new Random();
+            _score = Preferences.Get("_chances", 0);
             _text = "Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             if (GuessEntry == null)
@@ -62,19 +66,23 @@ namespace NumberBomb.ViewModels
             RefreshIcon_OnTapped = new Command(RefreshIconCommandExecute);
         }
 
+        private void Reset()
+        {
+            RandomNumber = randomNumberGenrator.Next(100) + 1;
+            _chances = 10;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
+            _text = "Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hint)));
+            _number = "0";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
+        }
+
         private async void RefreshIconCommandExecute(object obj)
         {
-            //PopupNavigation.Instance.PushAsync(new RestartPopup());
             var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
             if(response == true)
             {
-                RandomNumber = randomNumberGenrator.Next(100) + 1;
-                _chances = 10;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
-                _text = "Roboto, you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hint)));
-                _number = "0";
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
+                Reset();
             }
         }
 
@@ -83,7 +91,17 @@ namespace NumberBomb.ViewModels
             GuessedValue = Convert.ToInt32(GuessEntry);
             if (RandomNumber == GuessedValue)
             {
-                App.Current.MainPage.Navigation.PushAsync(new WinPage());
+                if(ChancesRemaining > _score)
+                {
+                    Preferences.Set("_chances", ChancesRemaining);
+                    _newScore = Preferences.Get("_chances", 0);
+                }
+                else
+                {
+                    _newScore = Preferences.Get("_chances", 0);
+                }
+                App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore));
+                Reset();
             }
             else
             {
@@ -101,7 +119,7 @@ namespace NumberBomb.ViewModels
                     if (RandomNumber != GuessedValue)
                     {
                         App.Current.MainPage.Navigation.PushAsync(new LosePage());
-
+                        Reset();
                     }
                 }
                 else

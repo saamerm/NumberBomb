@@ -18,22 +18,18 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Image HorizontalOptions="EndAndExpand"
+            <ImageButton HorizontalOptions="EndAndExpand"
                    VerticalOptions="Center"
                    Margin="0,0,12,0"
+                   Command = "{Binding RefreshIcon_OnTapped}"
                    WidthRequest="16"
                    HeightRequest="20">
-                <Image.Source>
+                <ImageButton.Source>
                     <FontImageSource Color="#343434"
                                      FontFamily="FontAwesome5Solid"
                                      Glyph="&#xf01e;"/>
-                </Image.Source>
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                              Command = "{Binding RefreshIcon_OnTapped}"
-                              NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-            </Image>
+                </ImageButton.Source>
+            </ImageButton>
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>       

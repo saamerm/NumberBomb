@@ -2,9 +2,68 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.WinPage">
+    <NavigationPage.TitleView>
+         <StackLayout Orientation="Horizontal">
+            <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>           
+         </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Congratulations, you won" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18"/>
+            <Label Text="YAY"
+                   FontSize="48"
+                   FontFamily="PatrickFont"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Fortunately you have found the key and used it to defuse bomb."
+                   FontSize="22"
+                   FontFamily="PatrickFont"
+                   Padding="13,0,13,0"
+                   HorizontalTextAlignment="Center"/>
+            <Label x:Name="label"
+                   FontSize="22"
+                   FontFamily="PatrickFont"
+                   Padding="13,0,13,0"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Check out your rank on the leaderboard!"
+                   FontSize="22"
+                   FontFamily="PatrickFont"
+                   Padding="13,0,13,0"
+                   HorizontalTextAlignment="Center"/>
+
+            <StackLayout Margin="0,60,0,0" Orientation="Vertical">
+                    <Button BackgroundColor="#61BC52"
+                            Margin="127,30,127,0"
+                            VerticalOptions="Center"
+                            FontSize="18"
+                            Text="Restart"
+                            FontFamily="PatrickFont"
+                            CornerRadius="20"
+                            WidthRequest="12"
+                            HeightRequest="44"
+                            TextColor="White"
+                            Command = "{Binding RestartCommand}"/>
+                    <Button BackgroundColor="#61BC52"
+                            Margin="127,30,127,0"
+                            FontSize="18"
+                            Text="Main Menu"
+                            FontFamily="PatrickFont"
+                            CornerRadius="20"
+                            HeightRequest="44"
+                            WidthRequest="42"
+                            TextColor="White"
+                            Command = "{Binding MainCommand}"/>
+                </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

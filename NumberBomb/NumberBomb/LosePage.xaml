@@ -1,7 +1,58 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NumberBomb.LosePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NumberBomb.LosePage">
+    <NavigationPage.TitleView>
+         <StackLayout Orientation="Horizontal">
+            <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>           
+         </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <Label Text="Sorry you lost" HorizontalOptions="Center"
-               VerticalOptions="Center" FontSize="20"/>
+        <StackLayout BackgroundColor="#2A2A2A">
+            <StackLayout Margin="0,145,0,0">
+                <Label Text="Sorry, you did not find the key and the bomb exploded"
+                       TextColor="#FF0000"
+                       FontSize="30"
+                       FontFamily="PatrickFont"
+                       HorizontalTextAlignment="Center"
+                       Padding="24,0,24,0"/>
+
+                <StackLayout Margin="0,60,0,0" Orientation="Vertical">
+                    <Button BackgroundColor="#61BC52"
+                            Margin="127,30,127,0"
+                            VerticalOptions="Center"
+                            FontSize="18"
+                            Text="Restart"
+                            FontFamily="PatrickFont"
+                            CornerRadius="20"
+                            WidthRequest="42"
+                            HeightRequest="44"
+                            TextColor="White"
+                            Command = "{Binding RestartCommand}"/>
+                    <Button BackgroundColor="#61BC52"
+                            Margin="127,30,127,0"
+                            FontSize="18"
+                            Text="Main Menu"
+                            FontFamily="PatrickFont"
+                            CornerRadius="20"
+                            HeightRequest="44"
+                            WidthRequest="42"
+                            TextColor="White"
+                            Command = "{Binding MainCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
