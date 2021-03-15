@@ -6,36 +6,30 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal">
-                 <Image  WidthRequest="24"
+                 <ImageButton  WidthRequest="24"
                          HeightRequest="24"
+                         BackgroundColor="White"
                          Margin="26,26,0,0"
+                         Command = "{Binding UserIcon_OnTapped}"                         
                          HorizontalOptions="StartAndExpand">
-                     <Image.Source>
+                     <ImageButton.Source>
                         <FontImageSource Color="#343434"
                                          FontFamily="FontAwesome5Regular"
                                          Glyph="&#xf007;"/>
-                       </Image.Source>
-                       <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command = "{Binding UserIcon_OnTapped}"
-                                NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                  </Image>
-                  <Image  WidthRequest="24"
+                       </ImageButton.Source>
+                  </ImageButton>
+                  <ImageButton  WidthRequest="24"
                           HeightRequest="24"
+                          Command ="{Binding InfoIcon_OnTapped}"
                           Margin="0,25,26,0"
+                          BackgroundColor="White"
                           HorizontalOptions="EndAndExpand">
-                        <Image.Source>
+                        <ImageButton.Source>
                             <FontImageSource Color="#343434"
                                              FontFamily="FontAwesome5Solid"
                                              Glyph="&#xf05a;"/>
-                        </Image.Source>
-                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command ="{Binding InfoIcon_OnTapped}"
-                                NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                  </Image>
+                        </ImageButton.Source>
+                  </ImageButton>
              </StackLayout>
              <StackLayout Margin="26,162,26,0">
                  <Label   FontSize="48"
