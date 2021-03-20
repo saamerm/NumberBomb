@@ -9,13 +9,14 @@ namespace NumberBomb.ViewModels
 {
     public class LeaderboardPageViewModel : INotifyPropertyChanged
     {
-        public List<ScoreItem> _scoreitems;
+        public List<ScoreItem> _scoreItems;
         public List<ScoreItem> ScoreItems {
-                get => _scoreitems;
-                set
-                {
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ScoreItems)));
-                }
+            get => _scoreItems;
+            set
+            {
+                _scoreItems = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ScoreItems)));
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -30,7 +31,8 @@ namespace NumberBomb.ViewModels
             var client = new HttpClient();
             var response = await client.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
-            ScoreItems = JsonConvert.DeserializeObject<List<ScoreItem>>(result);
+            var scoreItemsArray = JsonConvert.DeserializeObject<ScoreItem[]>(result);
+            ScoreItems = new List<ScoreItem>(scoreItemsArray);
         }
     }
 }
