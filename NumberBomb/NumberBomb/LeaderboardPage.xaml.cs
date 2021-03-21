@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using NumberBomb.ViewModels;
 using Xamarin.Forms;
 
 namespace NumberBomb
@@ -10,6 +10,8 @@ namespace NumberBomb
         public LeaderboardPage()
         {
             InitializeComponent();
+
+            BindingContext = new LeaderboardPageViewModel();
         }
     }
 }
