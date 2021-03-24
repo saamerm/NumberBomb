@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -57,8 +56,8 @@ namespace NumberBomb.ViewModels
         public GamePageViewModel()
         {
             randomNumberGenrator = new Random();
-            _gamerTagName = Preferences.Get("NameTag", string.Empty);
             _score = Preferences.Get("_chances", 0);
+            _gamerTagName = Preferences.Get("NameTag", string.Empty);
             _text = _gamerTagName + ", you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             if (GuessEntry == null)
@@ -102,9 +101,11 @@ namespace NumberBomb.ViewModels
         private void CheckCommandExecute(object obj)
         {
             GuessedValue = Convert.ToInt32(GuessEntry);
+
             if (RandomNumber == GuessedValue)
             {
-                if(ChancesRemaining > _score)
+                _score = Preferences.Get("_chances", 0);
+                if (ChancesRemaining > _score)
                 {
                     Preferences.Set("_chances", ChancesRemaining);
                     _newScore = Preferences.Get("_chances", 0);
@@ -113,7 +114,7 @@ namespace NumberBomb.ViewModels
                 {
                     _newScore = Preferences.Get("_chances", 0);
                 }
-                App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore));
+                App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
                 Reset();
             }
             else

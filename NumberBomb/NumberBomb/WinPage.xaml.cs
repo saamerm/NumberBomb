@@ -7,19 +7,16 @@ namespace NumberBomb
 {
     public partial class WinPage : ContentPage
     {
-        public int _chances;
-        public int newScore;
 
-        public WinPage(int chancesRemaining, int score)
+        WinPageViewModel _viewModel;
+        public WinPage(int chancesRemaining, int score, string gamerTagName)
         {
             InitializeComponent();
 
-            BindingContext = new WinPageViewModel();
+            _viewModel = new WinPageViewModel(chancesRemaining, gamerTagName);
+            BindingContext = _viewModel;     
 
-            _chances = chancesRemaining;
-            newScore = score;
-
-            label.Text = "Your remaining chances was " +  _chances + " and your highest score is " + newScore + ".";
+            label.Text = "Your remaining chances was " + chancesRemaining + " and your highest score is " + score + ".";
         }
     }
 }
