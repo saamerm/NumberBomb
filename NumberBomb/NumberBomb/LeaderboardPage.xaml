@@ -20,7 +20,7 @@
                 <StackLayout Margin="34,32,34,52" BackgroundColor="#FFFFFF">
                       <Grid 
                            HeightRequest="110"
-                            ColumnDefinitions="0.4*,2,0.4*,2,0.4*">
+                            ColumnDefinitions="0.3*,0.4*,0.3*">
                           <Label Text="Ranking" 
                                    Padding="10"
                                    FontSize="20"
@@ -30,13 +30,8 @@
                                    FontFamily="PatrickFont"
                                    VerticalTextAlignment="Center"
                                    HorizontalTextAlignment="Center"/>
-                         <BoxView HeightRequest="1"
-                                        BackgroundColor="#B7B7B7"
-                                        Grid.ColumnSpan="5"
-                                        Grid.Row="0"
-                                        VerticalOptions="End"/>
                           <Label Text="Gamer Tag"
-                                   Grid.Column="2"
+                                   Grid.Column="1"
                                     FontSize="20"
                                     TextColor="Black"
                                     Grid.Row="0"
@@ -44,7 +39,7 @@
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"/>
                           <Label Text="Lives"
-                                   Grid.Column="4"
+                                   Grid.Column="2"
                                    HorizontalTextAlignment="Center"
                                    FontSize="20"
                                    Padding="10"
@@ -53,6 +48,9 @@
                                    VerticalTextAlignment="Center"/>
 
                       </Grid>
+                     <BoxView HeightRequest="1"
+                                        BackgroundColor="#B7B7B7"
+                                        VerticalOptions="End"/>
                       <CollectionView ItemsSource="{Binding ScoreItems}"            
                                     BackgroundColor="#FFFFFF">
                       <CollectionView.ItemsLayout>
@@ -64,7 +62,7 @@
                           <Grid >
                             <Grid    
                                     HeightRequest="38"
-                                    ColumnDefinitions="0.4*,2,0.4*,2,0.4*">
+                                    ColumnDefinitions="0.3*,0.4*,0.3*">
                               <Label Text="{Binding Rank}"
                                      HorizontalTextAlignment="Center"
                                      Padding="10"
@@ -73,14 +71,8 @@
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                />
-                              <BoxView HeightRequest="1"
-                                     BackgroundColor="#B7B7B7"
-                                     Grid.ColumnSpan="5"
-                                     Grid.Row="0"
-                                     VerticalOptions="End"/>
-                      
                               <Label Text="{Binding Name}"
-                                     Grid.Column="2"
+                                     Grid.Column="1"
                                      FontSize="20"
                                      Padding="10"
                                      TextColor="Black"
@@ -89,14 +81,16 @@
                       
                               <Label Text="{Binding Score}"
                                      HorizontalTextAlignment="Center"
-                                     Grid.Column="4"
+                                     Grid.Column="2"
                                      FontSize="20"
                                      Padding="10"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
                             </Grid>
-
+                            <BoxView HeightRequest="1"
+                                     BackgroundColor="#B7B7B7"
+                                     VerticalOptions="End"/>
                           </Grid>
                         </DataTemplate>
                       </CollectionView.ItemTemplate>
