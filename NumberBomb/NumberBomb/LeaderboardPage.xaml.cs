@@ -12,6 +12,15 @@ namespace NumberBomb
             InitializeComponent();
 
             BindingContext = new LeaderboardPageViewModel();
+
+            if (Device.RuntimePlatform.Equals("Android"))
+            {
+                TitleLabel.HorizontalTextAlignment = TextAlignment.Start;
+            }
+            else if (Device.RuntimePlatform.Equals("iOS"))
+            {
+                TitleLabel.HorizontalOptions = LayoutOptions.Center;
+            }
         }
     }
 }
