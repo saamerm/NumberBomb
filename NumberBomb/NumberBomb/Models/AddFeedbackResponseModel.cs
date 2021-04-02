@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NumberBomb.Models
 {
- public class AddFeedBcakResponseModel
+ public class AddFeedbackResponseModel
   {
     public string Status { get; set; }
     public string Message { get; set; }
