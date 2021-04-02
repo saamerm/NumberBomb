@@ -16,9 +16,7 @@ namespace NumberBomb.ViewModels
   public class FeedBackViewModel : INotifyPropertyChanged
   {
     private bool _isBusy;
-
     public event PropertyChangedEventHandler PropertyChanged;
-
     public bool IsBusy
     {
       get
@@ -53,7 +51,6 @@ namespace NumberBomb.ViewModels
       }
     }
     public AddFeedbackRequestModel AddFeedback { get; set; }
-
     public FeedBackViewModel()
     {
       AddFeedback = new AddFeedbackRequestModel();
@@ -104,7 +101,6 @@ namespace NumberBomb.ViewModels
             await PopupNavigation.Instance.PushAsync(dialog);
           }
         }
-
       }
       catch (Exception e)
       {
@@ -116,7 +112,7 @@ namespace NumberBomb.ViewModels
         IsBusy = false;
       }
     }
-    private async Task<AddFeedBcakResponseModel> AddFeedBack()
+    private async Task<AddFeedbackResponseModel> AddFeedBack()
     {
       var client = new HttpClient();
       var data = new AddFeedbackRequestModel { Name = AddFeedback.Name, Email = AddFeedback.Email, Feedback = AddFeedback.Feedback };
@@ -124,10 +120,9 @@ namespace NumberBomb.ViewModels
       var requestContent = new StringContent(jsonString);
       var response = client.PostAsync("https://script.google.com/macros/s/AKfycbydFc7hHxvt_yiuT2qHYk6cu0aCLjB_RV-AxrPRQlglhvbMktHtPenfOuDw_PH2XB9z/exec", requestContent).Result;
       System.Console.WriteLine(response.StatusCode);
-
       var result = response.Content.ReadAsStringAsync().Result;
       System.Console.WriteLine(result);
-      var feedbackAdded = JsonConvert.DeserializeObject<AddFeedBcakResponseModel>(result);
+      var feedbackAdded = JsonConvert.DeserializeObject<AddFeedbackResponseModel>(result);
       return feedbackAdded;
     }
   }

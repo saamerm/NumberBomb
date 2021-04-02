@@ -61,7 +61,6 @@
           <pancake:PancakeView.Border>
             <pancake:Border Color="Black" Thickness="1"/>
           </pancake:PancakeView.Border>
-
         </pancake:PancakeView>
         <Label Text="Email Address"
                TextColor="Black"
@@ -82,11 +81,9 @@
                                   Keyboard="Email"
                                   BackgroundColor="Transparent"
                                    Margin="10,0,0,0"/>
-
           <pancake:PancakeView.Border>
             <pancake:Border Color="Black" Thickness="1"/>
           </pancake:PancakeView.Border>
-
         </pancake:PancakeView>
         <Label Text="Concerns and Feedback"
                TextColor="Black"
@@ -123,7 +120,6 @@
                 Margin="0,20,0,0"
                 WidthRequest="100"
                 Command="{Binding SubmitCommand}"/>
-
       </StackLayout>
       <StackLayout Grid.RowSpan="2" IsVisible="{Binding IsBusy}"
                     HorizontalOptions="Center"
