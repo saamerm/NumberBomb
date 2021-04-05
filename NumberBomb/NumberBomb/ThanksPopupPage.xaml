@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+            xmlns:pages="http://rotorgames.com" 
+            xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NumberBomb.ThanksPopupPage">
+  <pages:PopupPage.Animation>
+    <pages:ScaleAnimation
+      PositionIn="Top"
+      PositionOut="Center"
+      ScaleIn="1"
+      ScaleOut="0.7"
+      DurationIn="100"
+      EasingIn="BounceOut"/>
+  </pages:PopupPage.Animation>
+  <Grid VerticalOptions="Start" Margin="0,-20,0,0">
+    <BoxView HeightRequest="69" HorizontalOptions="FillAndExpand"
+               BackgroundColor="Black"/>
+    <Label 
+             HorizontalOptions="Center"
+             VerticalOptions="Center"
+             TextColor="White"
+             FontSize="24"
+             Text="{Binding FeedbackAdded}"
+             FontFamily="PatrickFont"/>
+  </Grid>
+  </pages:PopupPage>
