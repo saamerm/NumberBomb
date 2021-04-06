@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaManager;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -28,6 +29,7 @@ namespace NumberBomb.ViewModels
         {
             GamerTag = Preferences.Get("NameTag", string.Empty);
             ButtonCommand = new Command(ButtonCommandExecute);
+            Play();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,5 +42,10 @@ namespace NumberBomb.ViewModels
                 App.Current.MainPage = new NavigationPage(new HomePage());
             }
         }
-    }
+        public  async void Play()
+        {
+          var audio = CrossMediaManager.Current;
+          await audio.PlayFromAssembly("numberbombmusic.mp3", typeof(GamerTagViewModel).Assembly);
+        }
+  }
 }

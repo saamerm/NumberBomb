@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.8" />
     <PackageReference Include="Plugin.StoreReview" Version="3.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -31,11 +32,13 @@
     <None Remove="bomb.svg" />
     <None Remove="Fonts\FontAwesome5-Regular-400.otf" />
     <None Remove="Fonts\FontAwesome5Solid.otf" />
+    <None Remove="Resources\numberbombmusic.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
     <EmbeddedResource Include="Fonts\FontAwesome5Regular.otf" />
     <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
+    <EmbeddedResource Include="Resources\numberbombmusic.mp3" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />
