@@ -41,6 +41,10 @@ namespace NumberBomb.ViewModels
                 Preferences.Set("NameTag", ChangeName);
                 Application.Current.MainPage.Navigation.PopAsync();
             }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("", "Please enter a Gamer Tag", "OK");
+            }
         }
     }
 }

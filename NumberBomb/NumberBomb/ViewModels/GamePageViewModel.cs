@@ -18,10 +18,32 @@ namespace NumberBomb.ViewModels
         public int _chances = 10;
         public int remainNumber;
         public event PropertyChangedEventHandler PropertyChanged;
+        public int _minimum;
+        public int _maximum;
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
         public ICommand BackButtonClicked { get; set; }
         Random randomNumberGenrator;
+
+        public int MaximumLimit
+        {
+            get => _maximum;
+            set
+            {
+                _maximum = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MaximumLimit)));
+            }
+        }
+
+        public int MinimumLimit
+        {
+            get => _minimum;
+            set
+            {
+                _minimum = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MinimumLimit)));
+            }
+        }
 
         public string Hint
         {
@@ -56,9 +78,11 @@ namespace NumberBomb.ViewModels
         public GamePageViewModel()
         {
             randomNumberGenrator = new Random();
+            MinimumLimit = 1;
+            MaximumLimit = 100;
             _score = Preferences.Get("_chances", 0);
             _gamerTagName = Preferences.Get("NameTag", string.Empty);
-            _text = _gamerTagName + ", you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            _text = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             if (GuessEntry == null)
             {
@@ -83,7 +107,7 @@ namespace NumberBomb.ViewModels
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             _chances = 10;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
-            _text = _gamerTagName + ", you have to find the key to stop the bomb from blowing up. You have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            _text = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hint)));
             _number = "0";
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
@@ -119,27 +143,34 @@ namespace NumberBomb.ViewModels
             }
             else
             {
-                if(GuessedValue < RandomNumber)
-                {
-                    Hint = _gamerTagName  + ", " + GuessEntry + " is not the key \n Please enter a number between " + GuessEntry + " - 100";
-                }
-                else
-                {
-                    Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between 1 - " + GuessEntry;
-                }
+                IncorrectInput();
+            }
+        }
 
-                if (ChancesRemaining == 1)
+        private void IncorrectInput()
+        {
+            if (GuessedValue < RandomNumber)
+            {
+                MinimumLimit = GuessedValue;
+                Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between " + MinimumLimit + " - " + MaximumLimit;
+            }
+            else
+            {
+                MaximumLimit = GuessedValue;
+                Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between " + MinimumLimit + " - " + MaximumLimit;
+            }
+
+            if (ChancesRemaining == 1)
+            {
+                if (RandomNumber != GuessedValue)
                 {
-                    if (RandomNumber != GuessedValue)
-                    {
-                        App.Current.MainPage.Navigation.PushAsync(new LosePage());
-                        Reset();
-                    }
+                    App.Current.MainPage.Navigation.PushAsync(new LosePage());
+                    Reset();
                 }
-                else
-                {
-                    ChancesRemaining -= 1;
-                }               
+            }
+            else
+            {
+                ChancesRemaining -= 1;
             }
         }
     }

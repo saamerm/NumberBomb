@@ -13,11 +13,11 @@ namespace NumberBomb
 
             if (Device.RuntimePlatform.Equals("Android"))
             {
-                TitleLabel.HorizontalTextAlignment = TextAlignment.Start;
+                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
             }
             else if (Device.RuntimePlatform.Equals("iOS"))
             {
-                TitleLabel.HorizontalOptions = LayoutOptions.Center;
+                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
             }
         }
     }

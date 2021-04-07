@@ -29,6 +29,7 @@
                        HorizontalTextAlignment="Center"/>
                 <Entry x:Name="NameEntry"
                        Text="{Binding GamerTag}"
+                       Placeholder="LeeroyJenkins"
                        WidthRequest="200"
                        HorizontalOptions="Center"/>
                 <Button Text="Enter" 

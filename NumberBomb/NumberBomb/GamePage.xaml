@@ -53,10 +53,11 @@
                    FontSize="18"
                    FontFamily="PatrickFont"
                    HorizontalTextAlignment="End"
+                   TextColor="Black"
                    Padding="0, 11, 35, 0">
                 <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Remain: "/>
+                            <Span Text="Remaining Chances : "/>
                             <Span Text="{Binding ChancesRemaining}"/>
                         </FormattedString>
                     </Label.FormattedText>
@@ -66,7 +67,8 @@
                         HorizontalTextAlignment="Center"
                         FontSize="18"
                         Padding="26,63,17,63"/>
-            <Entry 
+            <Entry
+                       x:Name="GuessEntry"
                        Text="{Binding GuessEntry}"
                        Keyboard="Numeric"
                        WidthRequest="80"
