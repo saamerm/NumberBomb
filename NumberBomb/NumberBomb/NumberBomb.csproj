@@ -33,6 +33,8 @@
     <None Remove="Fonts\FontAwesome5-Regular-400.otf" />
     <None Remove="Fonts\FontAwesome5Solid.otf" />
     <None Remove="Resources\numberbombmusic.mp3" />
+    <None Remove="volume_off_24px.svg" />
+    <None Remove="volume_up_24px.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
@@ -42,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />
+    <SharedImage Include="volume_off_24px.svg" />
+    <SharedImage Include="volume_up_24px.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="HomePage.xaml.cs">

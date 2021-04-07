@@ -42,10 +42,10 @@ namespace NumberBomb.ViewModels
                 App.Current.MainPage = new NavigationPage(new HomePage());
             }
         }
-        public  async void Play()
-        {
-          var audio = CrossMediaManager.Current;
-          await audio.PlayFromAssembly("numberbombmusic.mp3", typeof(GamerTagViewModel).Assembly);
-        }
+       private async void Play()
+       {
+           var audio = CrossMediaManager.Current;
+           await audio.PlayFromAssembly("numberbombmusic.mp3", typeof(GamerTagViewModel).Assembly);
+       }
   }
 }

@@ -4,18 +4,30 @@
              x:Class="NumberBomb.InfoPage"
              BackgroundColor="#EFEFEF">
     <NavigationPage.TitleView>
-        <Label           x:Name="TitleLabel"
-                         FontSize="25"
-                         TextColor="Black"
-                         VerticalOptions="CenterAndExpand"
-                         FontFamily="PatrickFont">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Number"/>
-                            <Span Text="BOMB" TextColor="Red"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+    <Grid >
+      <Label  x:Name="TitleLabel"
+             FontSize="25"
+             TextColor="Black"
+              HorizontalOptions="Start"
+             VerticalOptions="CenterAndExpand"
+             FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Number"/>
+            <Span Text="BOMB" TextColor="Red"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+      <Image  HorizontalOptions="End"
+               Source="{Binding PlayImage}"
+                VerticalOptions="Center"
+              Margin="0,0,20,0">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer Command="{Binding PlayCommand}"/>
+        </Image.GestureRecognizers>
+      </Image>
+    </Grid>
+      
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="46,80,46,53">

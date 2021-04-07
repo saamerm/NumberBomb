@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NumberBomb.ViewModels;
+using System;
 using System.Collections.Generic;
 
 using Xamarin.Forms;
@@ -10,7 +11,7 @@ namespace NumberBomb
         public InfoPage()
         {
             InitializeComponent();
-
+            BindingContext = new InfoViewModel();
             if (Device.RuntimePlatform.Equals("Android"))
             {
                 TitleLabel.HorizontalTextAlignment = TextAlignment.Start;

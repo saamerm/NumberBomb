@@ -72,7 +72,20 @@
                         Margin="0,18,0,0 "
                         CornerRadius="23"
                         Command = "{Binding LeaderBoardButtonCommand}"/>
-            </StackLayout>
+                <Button Text="{Binding ButtonText}" 
+                        BackgroundColor="Black"
+                        TextColor="White"
+                        WidthRequest="129"
+                        HeightRequest="46"
+                        Padding="0,10, 0, 10"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        FontFamily="PatrickFont"
+                        Margin="0,18,0,0 "
+                        CornerRadius="23"
+                        Command = "{Binding PlayCommand}"/>
+
+      </StackLayout>
             <Image 
                         Margin="5,0,0,14"
                         Source="bomb.png"
