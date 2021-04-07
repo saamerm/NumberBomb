@@ -18,7 +18,8 @@
           </FormattedString>
         </Label.FormattedText>
       </Label>
-      <Image  HorizontalOptions="End"
+      <Image  HorizontalOptions="End" 
+              IsVisible="false"
                Source="{Binding PlayImage}"
                 VerticalOptions="Center"
               Margin="0,0,20,0">
