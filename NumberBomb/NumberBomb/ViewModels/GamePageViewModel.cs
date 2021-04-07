@@ -104,6 +104,8 @@ namespace NumberBomb.ViewModels
 
         private void Reset()
         {
+            MaximumLimit = 100;
+            MinimumLimit = 1;
             RandomNumber = randomNumberGenrator.Next(100) + 1;
             _chances = 10;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
@@ -138,6 +140,7 @@ namespace NumberBomb.ViewModels
                 {
                     _newScore = Preferences.Get("_chances", 0);
                 }
+               
                 App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
                 Reset();
             }

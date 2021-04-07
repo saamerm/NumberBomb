@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="NumberBomb.FeedbackPage"
              NavigationPage.HasBackButton="False">
   <NavigationPage.TitleView>
@@ -8,7 +9,7 @@
       <ImageButton HorizontalOptions="StartAndExpand"
                     VerticalOptions="Center"
                     Margin="0,0,12,0"
-                    Command = "{Binding BackButtonClicked}"
+                    Command = "{Binding BackCommand}"
                     BackgroundColor="White"
                     WidthRequest="16"
                     HeightRequest="30">
@@ -77,7 +78,7 @@
                                   FontSize="14"
                                   Placeholder="email@something.com"
                                   PlaceholderColor="#DADADA"
-                                  TextColor="White"
+                                   TextColor="Black"
                                   Keyboard="Email"
                                   BackgroundColor="Transparent"
                                    Margin="10,0,0,0"/>

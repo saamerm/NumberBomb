@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -24,16 +25,22 @@ namespace NumberBomb.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ScoreItems)));
             }
         }
-
-        public LeaderboardPageViewModel()
+       public ICommand BackButtonClicked { get; set; }
+       public LeaderboardPageViewModel()
         {
             _score = Preferences.Get("_chances", 0);
             ScoreItems = new List<ScoreItem>();
+            BackButtonClicked = new Command(BackButtonClickedCommandExecute);
             GetApiCall();
             message = "Your best score is " + _score + " !";            
         }
 
-        public async Task GetApiCall()
+      private void BackButtonClickedCommandExecute(object obj)
+      {
+          Application.Current.MainPage.Navigation.PopAsync();
+      }
+
+    public async Task GetApiCall()
         {
             var url = "https://script.google.com/macros/s/AKfycbyYixMarhPEUj3UVzOxWne1bJnMZDOcXUn3dHA4UrP21L_qA673bCkeG6Liys7c6oj5PA/exec";
             var client = new HttpClient();

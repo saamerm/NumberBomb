@@ -2,15 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.InfoPage"
+             NavigationPage.HasBackButton="False"
              BackgroundColor="#EFEFEF">
-    <NavigationPage.TitleView>
+  <NavigationPage.TitleView>
     <Grid >
+      <ImageButton HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Center"
+                    Margin="0,0,12,0"
+                    Command = "{Binding BackButtonClicked}"
+                    BackgroundColor="White"
+                    WidthRequest="16"
+                    HeightRequest="30">
+        <ImageButton.Source>
+          <FontImageSource Color="#343434"
+                                     FontFamily="FontAwesome5Solid"
+                                     Glyph="&#xf053;"/>
+        </ImageButton.Source>
+      </ImageButton>
       <Label  x:Name="TitleLabel"
-             FontSize="25"
-             TextColor="Black"
-              HorizontalOptions="Start"
-             VerticalOptions="CenterAndExpand"
-             FontFamily="PatrickFont">
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    FontFamily="PatrickFont">
         <Label.FormattedText>
           <FormattedString>
             <Span Text="Number"/>
@@ -18,18 +32,9 @@
           </FormattedString>
         </Label.FormattedText>
       </Label>
-      <Image  HorizontalOptions="End" 
-              IsVisible="false"
-               Source="{Binding PlayImage}"
-                VerticalOptions="Center"
-              Margin="0,0,20,0">
-        <Image.GestureRecognizers>
-          <TapGestureRecognizer Command="{Binding PlayCommand}"/>
-        </Image.GestureRecognizers>
-      </Image>
+
     </Grid>
-      
-    </NavigationPage.TitleView>
+  </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="46,80,46,53">
              <Label Text="Game rules:&#10;Find the correct number in a given range, The score is based on the remian numbers that you have not guessed, so the less time you guess, the higher your score is"

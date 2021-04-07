@@ -42,12 +42,20 @@ namespace NumberBomb.ViewModels
         }
       }
     }
+    public ICommand BackButtonClicked { get; set; }
+
     public ICommand PlayCommand { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
     public InfoViewModel()
     {
       PlayImage = "volume_up_24px.png";
       PlayCommand = new Command(PlayCommandExcute);
+      BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+    }
+
+    private void BackButtonClickedCommandExecute(object obj)
+    {
+      Application.Current.MainPage.Navigation.PopAsync();
     }
 
     private async void PlayCommandExcute(object obj)
