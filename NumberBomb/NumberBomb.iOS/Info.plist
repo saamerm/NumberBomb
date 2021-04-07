@@ -10,8 +10,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -25,7 +23,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>NumberBomb</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.tfp.NumberBomb</string>
+	<string>com.tfp.numberbomb</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>

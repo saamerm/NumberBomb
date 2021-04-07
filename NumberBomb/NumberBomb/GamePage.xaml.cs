@@ -15,12 +15,18 @@ namespace NumberBomb
 
             if (Device.RuntimePlatform.Equals("Android"))
             {
-                TitleLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
+                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
             }
             else if (Device.RuntimePlatform.Equals("iOS"))
             {
-                TitleLabel.HorizontalOptions = LayoutOptions.EndAndExpand;
-            }
+                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            }            
+        }
+
+        protected override void OnAppearing()
+        {
+            GuessEntry.Focus();
+            base.OnAppearing();
         }
     }
 }
