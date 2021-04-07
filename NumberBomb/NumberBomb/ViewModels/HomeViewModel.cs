@@ -54,7 +54,7 @@ namespace NumberBomb.ViewModels
       UserIcon_OnTapped = new Command(UserIconCommandExecute);
       InfoIcon_OnTapped = new Command(InfoIconCommandExecute);
       PlayCommand = new Command(PlayCommandExcute);
-      ButtonText = "Sound on";
+      ButtonText = "MUSIC: ON";
     }
 
     private async void PlayCommandExcute(object obj)
@@ -64,13 +64,13 @@ namespace NumberBomb.ViewModels
         Preferences.Set("playMusic", true);
         IsPlaying = true;
         var audio = CrossMediaManager.Current;
-        ButtonText = "Sound on";
+        ButtonText = "MUSIC: ON";
         await audio.PlayFromAssembly("music.mp3", typeof(HomeViewModel).Assembly);
       }
       else
       {
         IsPlaying = false;
-        ButtonText = "Sound off";
+        ButtonText = "MUSIC: OFF";
         Preferences.Set("playMusic", false);
         await CrossMediaManager.Current.Stop();
       }

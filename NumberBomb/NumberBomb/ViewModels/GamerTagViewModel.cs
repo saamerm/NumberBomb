@@ -29,7 +29,6 @@ namespace NumberBomb.ViewModels
         {
             GamerTag = Preferences.Get("NameTag", string.Empty);
             ButtonCommand = new Command(ButtonCommandExecute);
-            Play();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -42,10 +41,6 @@ namespace NumberBomb.ViewModels
                 App.Current.MainPage = new NavigationPage(new HomePage());
             }
         }
-       private async void Play()
-       {
-           var audio = CrossMediaManager.Current;
-           await audio.PlayFromAssembly("numberbombmusic.mp3", typeof(GamerTagViewModel).Assembly);
-       }
+       
   }
 }
