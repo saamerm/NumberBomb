@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MediaManager;
 using UIKit;
 
 namespace NumberBomb.iOS
@@ -23,7 +24,7 @@ namespace NumberBomb.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Rg.Plugins.Popup.Popup.Init();
-
+            CrossMediaManager.Current.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

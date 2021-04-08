@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaManager;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -44,5 +45,6 @@ namespace NumberBomb.ViewModels
                 Application.Current.MainPage.DisplayAlert("", "Please enter a Gamer Tag", "OK");
             }
         }
-    }
+       
+  }
 }

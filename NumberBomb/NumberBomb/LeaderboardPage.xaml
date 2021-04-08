@@ -1,18 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NumberBomb.LeaderboardPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasBackButton="False"
+             x:Class="NumberBomb.LeaderboardPage">
      <NavigationPage.TitleView>
-        <Label           x:Name="TitleLabel"
-                         FontSize="25"
-                         TextColor="Black"
-                         VerticalOptions="CenterAndExpand"
-                         FontFamily="PatrickFont">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Number"/>
-                            <Span Text="BOMB" TextColor="Red"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+    <Grid >
+      <ImageButton HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Center"
+                    Margin="0,0,12,0"
+                    Command = "{Binding BackButtonClicked}"
+                    BackgroundColor="White"
+                    WidthRequest="16"
+                    HeightRequest="30">
+        <ImageButton.Source>
+          <FontImageSource Color="#343434"
+                                     FontFamily="FontAwesome5Solid"
+                                     Glyph="&#xf053;"/>
+        </ImageButton.Source>
+      </ImageButton>
+      <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Number"/>
+            <Span Text="BOMB" TextColor="Red"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+     
+    </Grid>
+    
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout>
@@ -52,7 +73,8 @@
                                         BackgroundColor="#B7B7B7"
                                         VerticalOptions="End"/>
                       <CollectionView ItemsSource="{Binding ScoreItems}"            
-                                    BackgroundColor="#FFFFFF">
+                                    BackgroundColor="#FFFFFF"
+                                     >
                       <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" />
                       </CollectionView.ItemsLayout>
@@ -61,10 +83,10 @@
                         <DataTemplate>
                           <Grid >
                             <Grid    
-                                    HeightRequest="38"
+                                    HeightRequest="50"
                                     ColumnDefinitions="0.3*,0.4*,0.3*">
                               <Label Text="{Binding Rank}"
-                                     HorizontalTextAlignment="Center"
+                                     VerticalTextAlignment="Center"
                                      Padding="10"
                                      FontSize="20"
                                      Grid.Column="0"
