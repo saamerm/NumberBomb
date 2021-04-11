@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-    public class ChangeUserViewModel : INotifyPropertyChanged
+    public class ChangeUserViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public string _newName;
         public ICommand SaveButtonCommand { get; set; }

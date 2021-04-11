@@ -7,8 +7,8 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-  public class HomeViewModel : INotifyPropertyChanged
-  {
+  public class HomeViewModel : BaseViewModel, INotifyPropertyChanged
+    {
     public event PropertyChangedEventHandler PropertyChanged;
     public ICommand StartButtonCommand { get; set; }
     public ICommand LeaderBoardButtonCommand { get; set; }

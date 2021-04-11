@@ -33,7 +33,7 @@
                         </ImageButton.Source>
                   </ImageButton>
              </StackLayout>
-             <StackLayout Margin="26,162,26,0">
+             <StackLayout Margin="26,98,26,0">
                  <Label   FontSize="48"
                           TextColor="Black"
                           HorizontalTextAlignment="Center"

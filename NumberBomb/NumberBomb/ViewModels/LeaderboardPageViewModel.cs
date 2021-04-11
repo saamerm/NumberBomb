@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-    public class LeaderboardPageViewModel : INotifyPropertyChanged
+    public class LeaderboardPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public List<ScoreItem> _scoreItems;
         public event PropertyChangedEventHandler PropertyChanged;

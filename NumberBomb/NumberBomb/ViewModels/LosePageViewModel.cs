@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-    public class LosePageViewModel
+    public class LosePageViewModel : BaseViewModel
     {
         public ICommand RestartCommand { get; set; }
         public ICommand MainCommand { get; set; }

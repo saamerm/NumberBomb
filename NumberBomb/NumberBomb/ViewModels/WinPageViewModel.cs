@@ -11,8 +11,8 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-  public class WinPageViewModel
-  {
+  public class WinPageViewModel : BaseViewModel
+    {
     public int finalScore;
     public string nameTag;
     public ICommand RestartCommand { get; set; }

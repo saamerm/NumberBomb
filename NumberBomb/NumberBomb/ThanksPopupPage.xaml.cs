@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using NumberBomb.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace NumberBomb
     public ThanksPopupPage()
     {
       InitializeComponent();
+      BindingContext = new ThanksPopupViewModel();
     }
   }
 }

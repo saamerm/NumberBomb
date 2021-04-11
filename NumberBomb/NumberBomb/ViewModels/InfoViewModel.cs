@@ -8,8 +8,8 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-  public class InfoViewModel: INotifyPropertyChanged
-  {
+  public class InfoViewModel: BaseViewModel, INotifyPropertyChanged
+    {
     private string _playImage;
     public string PlayImage
     {

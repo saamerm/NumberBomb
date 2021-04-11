@@ -11,7 +11,8 @@ namespace NumberBomb
         {
             InitializeComponent();
 
-            BindingContext = new GamePageViewModel();
+            var GamePageViewModel = new GamePageViewModel();
+            BindingContext = GamePageViewModel;
 
             if (Device.RuntimePlatform.Equals("Android"))
             {
@@ -20,11 +21,17 @@ namespace NumberBomb
             else if (Device.RuntimePlatform.Equals("iOS"))
             {
                 TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }            
+            }
+
+            GamePageViewModel.OnCheckFailed = ((obj) =>
+            {
+                GuessEntry.Focus();
+            });
         }
 
         protected override void OnAppearing()
         {
+            
             GuessEntry.Focus();
             base.OnAppearing();
         }
