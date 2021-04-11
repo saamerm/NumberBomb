@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="Views\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Fonts\PatrickHand-Regular.ttf" />

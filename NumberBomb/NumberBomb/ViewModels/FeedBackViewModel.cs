@@ -13,8 +13,8 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-  public class FeedBackViewModel : INotifyPropertyChanged
-  {
+  public class FeedBackViewModel : BaseViewModel, INotifyPropertyChanged
+    {
     private bool _isBusy;
     public event PropertyChangedEventHandler PropertyChanged;
     public bool IsBusy

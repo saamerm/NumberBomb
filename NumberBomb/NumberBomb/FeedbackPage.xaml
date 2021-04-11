@@ -5,7 +5,7 @@
              x:Class="NumberBomb.FeedbackPage"
              NavigationPage.HasBackButton="False">
   <NavigationPage.TitleView>
-    <StackLayout Orientation="Horizontal">
+    <Grid>
       <ImageButton HorizontalOptions="StartAndExpand"
                     VerticalOptions="Center"
                     Margin="0,0,12,0"
@@ -19,8 +19,20 @@
                                      Glyph="&#xf053;"/>
         </ImageButton.Source>
       </ImageButton>
-     
-    </StackLayout>
+      <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    FontFamily="PatrickFont">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Number"/>
+            <Span Text="BOMB" TextColor="Red"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>     
+    </Grid>
   </NavigationPage.TitleView>
   <ContentPage.Content>
     <Grid RowDefinitions="auto,auto" 

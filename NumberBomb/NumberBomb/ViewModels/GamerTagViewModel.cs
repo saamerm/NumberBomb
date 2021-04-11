@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-    public class GamerTagViewModel : INotifyPropertyChanged
+    public class GamerTagViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public string _gamerTag;
         public ICommand ButtonCommand { get; set; }

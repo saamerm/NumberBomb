@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace NumberBomb.ViewModels
 {
-    public class GamePageViewModel : INotifyPropertyChanged
+    public class GamePageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public string _number;
         public string _text;
@@ -15,6 +15,7 @@ namespace NumberBomb.ViewModels
         public int _newScore;
         public int RandomNumber;
         public int GuessedValue;
+        private int PreviousGuess;
         public int _chances = 10;
         public int remainNumber;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -23,6 +24,7 @@ namespace NumberBomb.ViewModels
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
         public ICommand BackButtonClicked { get; set; }
+        public Action<bool> OnCheckFailed { get; set; }
         Random randomNumberGenrator;
 
         public int MaximumLimit
@@ -84,10 +86,6 @@ namespace NumberBomb.ViewModels
             _gamerTagName = Preferences.Get("NameTag", string.Empty);
             _text = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
             RandomNumber = randomNumberGenrator.Next(100) + 1;
-            if (GuessEntry == null)
-            {
-                GuessEntry = "0";
-            }
             CheckCommand = new Command(CheckCommandExecute);
             RefreshIcon_OnTapped = new Command(RefreshIconCommandExecute);
             BackButtonClicked = new Command(BackButtonClickedCommandExecute);
@@ -124,10 +122,29 @@ namespace NumberBomb.ViewModels
             }
         }
 
-        private void CheckCommandExecute(object obj)
+        private async void CheckCommandExecute(object obj)
         {
-            GuessedValue = Convert.ToInt32(GuessEntry);
+            Int32.TryParse(GuessEntry, out GuessedValue);
 
+            if (String.IsNullOrEmpty(GuessedValue.ToString()) || GuessedValue < 1 || GuessedValue > 100)
+            {
+                await Application.Current.MainPage.DisplayAlert("", "Please enter a number within the limits", "OK");
+            }
+            else if(GuessedValue == PreviousGuess)
+            {
+                await Application.Current.MainPage.DisplayAlert("", "Please enter a number different from the previous guess", "OK");
+            }
+            else
+            {
+                CorrectGuess();
+            }
+            GuessEntry = "";
+            OnCheckFailed?.Invoke(true);
+        }
+
+        private void CorrectGuess()
+        {
+            PreviousGuess = GuessedValue;
             if (RandomNumber == GuessedValue)
             {
                 _score = Preferences.Get("_chances", 0);
@@ -140,7 +157,7 @@ namespace NumberBomb.ViewModels
                 {
                     _newScore = Preferences.Get("_chances", 0);
                 }
-               
+
                 App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
                 Reset();
             }

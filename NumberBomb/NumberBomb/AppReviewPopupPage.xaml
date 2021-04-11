@@ -28,7 +28,7 @@
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
                    FontFamily="PatrickFont"
-                   FontSize="20"
+                   FontSize="18"
                    Margin="5,0"/>
             <StackLayout Orientation="Horizontal" 
                         Margin="20,10,20,0"
@@ -37,9 +37,9 @@
                       WidthRequest="100"
                       HeightRequest="40"
                       CornerRadius="10"
-                      TextColor="Black"
+                      TextColor="#61BC52"
                       Margin="10,0,0,0"
-                      BorderColor="Black"
+                      BorderColor="#61BC52"
                       BorderWidth="1"
                       Command="{Binding YesCommand}"
                       BackgroundColor="White"/>
@@ -49,7 +49,7 @@
                       CornerRadius="10"
                       TextColor="White"
                       Command="{Binding NoCommand}"
-                      BackgroundColor="Black"
+                      BackgroundColor="#61BC52"
                       HorizontalOptions="End"/>
             </StackLayout>
           </StackLayout>
