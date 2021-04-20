@@ -56,7 +56,7 @@ namespace NumberBomb.ViewModels
     }
     private async Task PostApiCall()
     {
-      var url = "https://script.google.com/macros/s/AKfycbyYixMarhPEUj3UVzOxWne1bJnMZDOcXUn3dHA4UrP21L_qA673bCkeG6Liys7c6oj5PA/exec";
+      var url = "https://script.google.com/macros/s/AKfycbwGUUx8-D7ABvmE47urkspg-_ygi4bag5-ts6kC4UbIvWTCbieHkE8w6nXoAaX1DnCEQQ/exec";
       var client = new HttpClient();
       var data = new ScoreItem { Name = nameTag, Score = finalScore };
       var jsonString = JsonConvert.SerializeObject(data);
