@@ -24,6 +24,7 @@ namespace NumberBomb.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             Rg.Plugins.Popup.Popup.Init();
+            Sharpnado.Tabs.iOS.Preserver.Preserve();
             CrossMediaManager.Current.Init();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
