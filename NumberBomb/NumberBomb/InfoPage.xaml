@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NumberBomb.InfoPage"
              NavigationPage.HasBackButton="False"
-             BackgroundColor="#EFEFEF">
+             BackgroundColor="#fdfdfd">
   <NavigationPage.TitleView>
     <Grid >
       <ImageButton HorizontalOptions="StartAndExpand"

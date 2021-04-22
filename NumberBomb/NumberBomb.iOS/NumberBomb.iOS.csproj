@@ -146,5 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\LogoWithBackground.png" />
+    <BundleResource Include="Resources\animation.png" />
+    <BundleResource Include="Resources\cloud.png" />
+    <BundleResource Include="Resources\darkcloud.png" />
   </ItemGroup>
 </Project>

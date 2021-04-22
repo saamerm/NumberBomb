@@ -14,14 +14,14 @@ namespace NumberBomb
             var GamePageViewModel = new GamePageViewModel();
             BindingContext = GamePageViewModel;
 
-            if (Device.RuntimePlatform.Equals("Android"))
+           if (Device.RuntimePlatform.Equals("Android"))
             {
                 TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
             }
             else if (Device.RuntimePlatform.Equals("iOS"))
             {
                 TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }
+            } 
 
             GamePageViewModel.OnCheckFailed = ((obj) =>
             {
