@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using MediaManager;
 using NumberBomb.Enums;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -25,15 +26,27 @@ namespace NumberBomb.ViewModels
         private int PreviousGuess;
         public int _chances;
         public int remainNumber;
+        public string _pauseimage;
         public event PropertyChangedEventHandler PropertyChanged;
         public int _minimum;
         public int _maximum;
+        public ICommand PlayCommand { get; set; }
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
         public ICommand BackButtonClicked { get; set; }
         public Action<bool> OnCheckFailed { get; set; }
+        public bool IsPlaying { get; set; }
         Random _randomNumberGenrator;
 
+        public string PauseImage
+        {
+            get => _pauseimage;
+            set
+            {
+                _pauseimage = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PauseImage)));
+            }
+        }
         public int MaximumLimit
         {
             get => _maximum;
@@ -105,9 +118,16 @@ namespace NumberBomb.ViewModels
             CloudImage = "cloud.png";
             _gamerTagName = Preferences.Get("NameTag", string.Empty);
             _text = "Please enter a number between 1 - 100";
+            PlayCommand = new Command(PlayCommandExcute);
             CheckCommand = new Command(CheckCommandExecute);
             RefreshIcon_OnTapped = new Command(RefreshIconCommandExecute);
             BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+
+            if (Preferences.ContainsKey("playMusic"))
+            {
+                IsPlaying = Preferences.Get("playMusic", false);
+                PauseImage = (IsPlaying) ? "volume_up_24px.png" : "volume_off_24px.png";
+            }
         }
 
         private void GenerateNumber()
@@ -143,6 +163,25 @@ namespace NumberBomb.ViewModels
             }
         }
 
+        private async void PlayCommandExcute(object obj)
+        {
+            if (!IsPlaying)
+            {
+                Preferences.Set("playMusic", true);
+                PauseImage = "volume_up_24px.png";
+                IsPlaying = true;
+                var audio = CrossMediaManager.Current;
+                await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+            }
+            else
+            {
+                PauseImage = "volume_off_24px.png";
+                IsPlaying = false;
+                Preferences.Set("playMusic", false);
+                await CrossMediaManager.Current.Stop();
+            }
+        }
+
         private async void BackButtonClickedCommandExecute(object obj)
         {
             var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
@@ -159,7 +198,7 @@ namespace NumberBomb.ViewModels
             RandomNumber = _randomNumberGenrator.Next(100) + 1;
             SetChances();
             CloudImage = "cloud.png";
-            Hint = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            Hint = "Please enter a number between 1 - 100";
             GuessEntry = "";
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
         }

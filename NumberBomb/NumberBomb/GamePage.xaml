@@ -33,20 +33,33 @@
                         <Span Text="BOMB" TextColor="Red"/>
                     </FormattedString>
                 </Label.FormattedText>
-            </Label> 
-            <ImageButton HorizontalOptions="EndAndExpand"
-                   VerticalOptions="Center"
-                   BackgroundColor="White"
-                   Margin="0,0,0,0"
-                   Command = "{Binding RefreshIcon_OnTapped}"
-                   WidthRequest="16"
-                   HeightRequest="20">
-                <ImageButton.Source>
-                    <FontImageSource Color="#343434"
-                                     FontFamily="FontAwesome5Solid"
-                                     Glyph="&#xf01e;"/>
-                </ImageButton.Source>
-            </ImageButton>
+            </Label>
+
+            <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="End">
+                <Image
+                        Source="{Binding PauseImage, Converter={converters:ImageConverter}}"                       
+                        VerticalOptions="Center"
+                        HorizontalOptions="End">
+                  <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PlayCommand}"/>
+                  </Image.GestureRecognizers>
+                </Image>
+                <ImageButton HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center"
+                       BackgroundColor="White"
+                       Margin="0,0,0,0"
+                       Command = "{Binding RefreshIcon_OnTapped}"
+                       WidthRequest="16"
+                       HeightRequest="20">
+                    <ImageButton.Source>
+                        <FontImageSource Color="#343434"
+                                         FontFamily="FontAwesome5Solid"
+                                         Glyph="&#xf01e;"/>
+                    </ImageButton.Source>
+                </ImageButton>
+            </StackLayout>
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>       
