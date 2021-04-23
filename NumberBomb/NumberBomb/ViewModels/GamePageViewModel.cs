@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using NumberBomb.Enums;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -11,12 +12,18 @@ namespace NumberBomb.ViewModels
         public string _number;
         public string _text;
         public string _gamerTagName;
+        public string _image;
         public int _score;
         public int _newScore;
         public int RandomNumber;
+        public int IncorrectNumber1;
+        public int IncorrectNumber2;
+        public int IncorrectNumber3;
+        public int IncorrectNumber4;
+        public int IncorrectNumber5;
         public int GuessedValue;
         private int PreviousGuess;
-        public int _chances = 10;
+        public int _chances;
         public int remainNumber;
         public event PropertyChangedEventHandler PropertyChanged;
         public int _minimum;
@@ -25,7 +32,7 @@ namespace NumberBomb.ViewModels
         public ICommand RefreshIcon_OnTapped { get; set; }
         public ICommand BackButtonClicked { get; set; }
         public Action<bool> OnCheckFailed { get; set; }
-        Random randomNumberGenrator;
+        Random _randomNumberGenrator;
 
         public int MaximumLimit
         {
@@ -57,6 +64,16 @@ namespace NumberBomb.ViewModels
             }
         }
 
+        public string CloudImage
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CloudImage)));
+            }
+        }
+
         public string GuessEntry
         {
             get => _number;
@@ -67,7 +84,7 @@ namespace NumberBomb.ViewModels
             }
         }
 
-         public int ChancesRemaining
+        public int ChancesRemaining
         {
             get => _chances;
             set
@@ -79,16 +96,51 @@ namespace NumberBomb.ViewModels
 
         public GamePageViewModel()
         {
-            randomNumberGenrator = new Random();
+            _randomNumberGenrator = new Random();
             MinimumLimit = 1;
             MaximumLimit = 100;
+            GenerateNumber();
+            SetChances();
             _score = Preferences.Get("_chances", 0);
+            CloudImage = "cloud.png";
             _gamerTagName = Preferences.Get("NameTag", string.Empty);
-            _text = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
-            RandomNumber = randomNumberGenrator.Next(100) + 1;
+            _text = "Please enter a number between 1 - 100";
             CheckCommand = new Command(CheckCommandExecute);
             RefreshIcon_OnTapped = new Command(RefreshIconCommandExecute);
             BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+        }
+
+        private void GenerateNumber()
+        {
+            var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+
+            if (difficulitylevel == (Difficulty.Easy.ToString()))
+            {
+                RandomNumber = _randomNumberGenrator.Next(100) + 1;
+            }
+            else
+            {
+                RandomNumber = _randomNumberGenrator.Next(100) + 1;
+                IncorrectNumber1 = _randomNumberGenrator.Next(100) + 1;
+                IncorrectNumber2 = _randomNumberGenrator.Next(100) + 1;
+                IncorrectNumber3 = _randomNumberGenrator.Next(100) + 1;
+                IncorrectNumber4 = _randomNumberGenrator.Next(100) + 1;
+                IncorrectNumber5 = _randomNumberGenrator.Next(100) + 1;
+            }
+        }
+
+        private void SetChances()
+        {
+            var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+
+            if (difficulitylevel == (Difficulty.Hard.ToString()))
+            {
+                ChancesRemaining = 5;
+            }
+            else
+            {
+                ChancesRemaining = 10;
+            }
         }
 
         private async void BackButtonClickedCommandExecute(object obj)
@@ -104,13 +156,12 @@ namespace NumberBomb.ViewModels
         {
             MaximumLimit = 100;
             MinimumLimit = 1;
-            RandomNumber = randomNumberGenrator.Next(100) + 1;
-            _chances = 10;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ChancesRemaining)));
-            _text = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Hint)));
-            _number = "0";
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GuessEntry)));
+            RandomNumber = _randomNumberGenrator.Next(100) + 1;
+            SetChances();
+            CloudImage = "cloud.png";
+            Hint = _gamerTagName + ", you have to guess a number between 1-100, The correct number will give you the key to defuse the bomb \n But you only have 10 chances to guess it right!";
+            GuessEntry = "";
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(""));
         }
 
         private async void RefreshIconCommandExecute(object obj)
@@ -136,30 +187,18 @@ namespace NumberBomb.ViewModels
             }
             else
             {
-                CorrectGuess();
+                CheckGuess();
             }
             GuessEntry = "";
             OnCheckFailed?.Invoke(true);
         }
 
-        private void CorrectGuess()
+        private void CheckGuess()
         {
             PreviousGuess = GuessedValue;
             if (RandomNumber == GuessedValue)
             {
-                _score = Preferences.Get("_chances", 0);
-                if (ChancesRemaining > _score)
-                {
-                    Preferences.Set("_chances", ChancesRemaining);
-                    _newScore = Preferences.Get("_chances", 0);
-                }
-                else
-                {
-                    _newScore = Preferences.Get("_chances", 0);
-                }
-
-                App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
-                Reset();
+                CorrectInput();
             }
             else
             {
@@ -167,18 +206,46 @@ namespace NumberBomb.ViewModels
             }
         }
 
-        private void IncorrectInput()
+        private void CorrectInput()
         {
-            if (GuessedValue < RandomNumber)
+            _score = Preferences.Get("_chances", 0);
+            if (ChancesRemaining > _score)
             {
-                MinimumLimit = GuessedValue;
-                Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between " + MinimumLimit + " - " + MaximumLimit;
+                Preferences.Set("_chances", ChancesRemaining);
+                _newScore = Preferences.Get("_chances", 0);
             }
             else
             {
-                MaximumLimit = GuessedValue;
-                Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between " + MinimumLimit + " - " + MaximumLimit;
+                _newScore = Preferences.Get("_chances", 0);
             }
+
+            App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
+            Reset();
+        }
+
+        private void IncorrectInput()
+        {
+            //if medium or hard and the user chose one of the 5 wrong number push to the losepage
+
+            var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+
+            if (difficulitylevel == (Difficulty.Medium.ToString()) || difficulitylevel == (Difficulty.Hard.ToString()))
+            {
+                if(GuessedValue == IncorrectNumber1 || GuessedValue == IncorrectNumber2 || GuessedValue == IncorrectNumber3 || GuessedValue == IncorrectNumber4 || GuessedValue == IncorrectNumber5)
+                {
+                    App.Current.MainPage.Navigation.PushAsync(new LosePage());
+                    Reset();
+                    return;
+                }
+            }
+
+            if (GuessedValue < RandomNumber)
+                MinimumLimit = GuessedValue;
+            else
+                MaximumLimit = GuessedValue;
+
+            CloudImage = "darkcloud.png";                
+            Hint = _gamerTagName + ", " + GuessEntry + " is not the key \n Please enter a number between " + MinimumLimit + " - " + MaximumLimit;
 
             if (ChancesRemaining == 1)
             {

@@ -60,7 +60,6 @@
                         VerticalOptions="Center"
                         FontFamily="PatrickFont"
                         Margin="0,55,0,0"
-                        CornerRadius="23"
                         Command = "{Binding StartButtonCommand}"/>
                 <Button Text="Leaderboard" 
                         BackgroundColor="Black"
@@ -72,7 +71,6 @@
                         VerticalOptions="Center"
                         FontFamily="PatrickFont"
                         Margin="0,18,0,0 "
-                        CornerRadius="23"
                         Command = "{Binding LeaderBoardButtonCommand}"/>
                 <Button Text="{Binding ButtonText}" 
                         BackgroundColor="Black"
@@ -83,8 +81,7 @@
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         FontFamily="PatrickFont"
-                        Margin="0,18,0,0 "
-                        CornerRadius="23"
+                        Margin="0,18,0,0"
                         Command = "{Binding PlayCommand}"/>
 
       </StackLayout>

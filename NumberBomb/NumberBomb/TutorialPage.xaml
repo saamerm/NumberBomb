@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="NumberBomb.TutorialPage"
+    BackgroundColor="#fdfdfd">
+    <NavigationPage.TitleView>
+         <StackLayout Orientation="Horizontal">
+            <Label  x:Name="TitleLabel"
+                    FontSize="25"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    FontFamily="PatrickFont">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Number"/>
+                        <Span Text="BOMB" TextColor="Red"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label> 
+         </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout
+                  Margin="0,30,0,0">
+            <Grid HorizontalOptions="Center"
+                  VerticalOptions="Center">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                  </Grid.RowDefinitions>
+
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                  </Grid.ColumnDefinitions>
+
+                  <Image HorizontalOptions="Center"
+                         Source="animation.png"
+                         WidthRequest="538"
+                         HeightRequest="412"
+                         Grid.Row="0"
+                         Grid.Column="0"/>
+                  <Label HorizontalOptions="Center"
+                         HorizontalTextAlignment="Center"
+                         Text="{Binding Hint}"
+                         FontFamily="PatrickFont"
+                         FontSize="18"
+                         Padding="40,150,40,13"
+                         Grid.Row="0"
+                         Grid.Column="0"/>
+            </Grid>
+            <Button Text="OK"
+                    BackgroundColor="#343434"
+                    TextColor="White"
+                    WidthRequest="241"
+                    HeightRequest="42"
+                    Margin="59,0,75,0"
+                    Command="{Binding OkCommand}"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

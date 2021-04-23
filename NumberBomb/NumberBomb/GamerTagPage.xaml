@@ -42,7 +42,6 @@
                         VerticalOptions="Center"
                         FontFamily="PatrickFont"
                         Margin="0,84,0,0"
-                        CornerRadius="23"
                         Command = "{Binding ButtonCommand}"/>
             </StackLayout>
             <Image 
