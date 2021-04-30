@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasBackButton="False"
-             x:Class="NumberBomb.WinPage">
+             x:Class="NumberBomb.WinPage"
+             BackgroundColor="#1D1C1B">
     <NavigationPage.TitleView>
          <StackLayout Orientation="Horizontal">
             <Label  x:Name="TitleLabel"
@@ -23,20 +24,24 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="YAY"
+                   TextColor="White"
                    FontSize="48"
                    FontFamily="PatrickFont"
                    HorizontalTextAlignment="Center"/>
             <Label Text="Fortunately you have found the key and used it to defuse bomb."
+                   TextColor="White"
                    FontSize="22"
                    FontFamily="PatrickFont"
                    Padding="13,0,13,0"
                    HorizontalTextAlignment="Center"/>
             <Label x:Name="label"
+                   TextColor="White"
                    FontSize="22"
                    FontFamily="PatrickFont"
                    Padding="13,0,13,0"
                    HorizontalTextAlignment="Center"/>
             <Label Text="Check out your rank on the leaderboard!"
+                   TextColor="White"
                    FontSize="22"
                    FontFamily="PatrickFont"
                    Padding="13,0,13,0"
