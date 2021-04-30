@@ -3,76 +3,93 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="NumberBomb.DifficultyPage"
-    BackgroundColor="#fdfdfd">
+    BackgroundColor="#fdfdfd"
+    NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
-         <StackLayout Orientation="Horizontal">
-            <Label  x:Name="TitleLabel"
+          <Grid >
+      <ImageButton HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Center"
+                    Margin="0,0,12,0"
+                    Command = "{Binding BackButtonClicked}"
+                    BackgroundColor="White"
+                    WidthRequest="16"
+                    HeightRequest="30">
+        <ImageButton.Source>
+          <FontImageSource Color="#343434"
+                                     FontFamily="FontAwesome5Solid"
+                                     Glyph="&#xf053;"/>
+        </ImageButton.Source>
+      </ImageButton>
+      <Label  x:Name="TitleLabel"
                     FontSize="25"
                     TextColor="Black"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"
                     FontFamily="PatrickFont">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Number"/>
-                        <Span Text="BOMB" TextColor="Red"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-         </StackLayout>
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Number"/>
+            <Span Text="BOMB" TextColor="Red"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+
+    </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout Margin="0,206,0,0">
-        <Button 
-              WidthRequest="129"
-              HeightRequest="46"
-              Text="Easy"
-              TextColor="White"
-              HorizontalOptions="Center"
-              VerticalOptions="Center"
-              BackgroundColor="Black"
-              FontFamily="PatrickFont"
-              FontSize="18"
-              Command="{Binding DiffcultyCommand}"
-              CommandParameter="Easy"
-              />
+        <StackLayout>
+            <StackLayout Margin="0,206,0,0">
+                <Button 
+                      WidthRequest="240"
+                      HeightRequest="46"
+                      Text="Easy"
+                      TextColor="White"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      BackgroundColor="Black"
+                      FontFamily="PatrickFont"
+                      FontSize="18"
+                      Command="{Binding DiffcultyCommand}"
+                      CommandParameter="Easy"
+                      />
         
-        <Button 
-              WidthRequest="129"
-              HeightRequest="46"
-              Text="Medium"
-              TextColor="White"
-              HorizontalOptions="Center"
-              VerticalOptions="Center"
-              BackgroundColor="Black"
-              FontFamily="PatrickFont"
-              FontSize="18"
-              Margin="0,38,0,0"
-              Command="{Binding DiffcultyCommand}"
-              CommandParameter="Medium"
-              />
+                <Button 
+                      WidthRequest="240"
+                      HeightRequest="46"
+                      Text="Medium"
+                      TextColor="White"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      BackgroundColor="Black"
+                      FontFamily="PatrickFont"
+                      FontSize="18"
+                      Margin="0,38,0,0"
+                      Command="{Binding DiffcultyCommand}"
+                      CommandParameter="Medium"
+                      />
 
-        <Button 
-              WidthRequest="129"
-              HeightRequest="46"
-              Text="Hard"
-              TextColor="White"
-              HorizontalOptions="Center"
-              VerticalOptions="Center"
-              BackgroundColor="Black"
-              FontFamily="PatrickFont"
-              FontSize="18"
-              Margin="0,38,0,0"
-              Command="{Binding DiffcultyCommand}"
-              CommandParameter="Hard"
-              />
-         <Image 
-              Margin="5,0,0,14"
-              Source="bomb.png"
-              HorizontalOptions="Start"
-              VerticalOptions="EndAndExpand"
-              WidthRequest="138"
-              HeightRequest="138"/>
-      </StackLayout>
+                <Button 
+                      WidthRequest="240"
+                      HeightRequest="46"
+                      Text="Hard"
+                      TextColor="White"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"
+                      BackgroundColor="Black"
+                      FontFamily="PatrickFont"
+                      FontSize="18"
+                      Margin="0,38,0,0"
+                      Command="{Binding DiffcultyCommand}"
+                      CommandParameter="Hard"
+                      />
+            </StackLayout>
+             <Image 
+                  Margin="5,0,0,54"
+                  Source="bomb.png"
+                  HorizontalOptions="Start"
+                  VerticalOptions="EndAndExpand"
+                  WidthRequest="138"
+                  HeightRequest="138"/>
+          </StackLayout>
     </ContentPage.Content>
 </ContentPage>

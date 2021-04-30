@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NumberBomb.ChangeUserPage">
+             x:Class="NumberBomb.ChangeUserPage"
+             NavigationPage.HasBackButton="False">
      <NavigationPage.TitleView>
-         <StackLayout Orientation="Horizontal">
-            <Label  x:Name="TitleLabel"
-                    FontSize="25"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Center"
-                    FontFamily="PatrickFont">
+          <Grid >
+              <ImageButton HorizontalOptions="StartAndExpand"
+                            VerticalOptions="Center"
+                            Margin="0,0,12,0"
+                            Command = "{Binding BackButtonClicked}"
+                            BackgroundColor="White"
+                            WidthRequest="16"
+                            HeightRequest="30">
+                <ImageButton.Source>
+                  <FontImageSource Color="#343434"
+                                             FontFamily="FontAwesome5Solid"
+                                             Glyph="&#xf053;"/>
+                </ImageButton.Source>
+              </ImageButton>
+              <Label  x:Name="TitleLabel"
+                            FontSize="25"
+                            TextColor="Black"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            FontFamily="PatrickFont">
                 <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Number"/>
-                        <Span Text="BOMB" TextColor="Red"/>
-                    </FormattedString>
+                  <FormattedString>
+                    <Span Text="Number"/>
+                    <Span Text="BOMB" TextColor="Red"/>
+                  </FormattedString>
                 </Label.FormattedText>
-            </Label>           
-         </StackLayout>
+              </Label>
+
+        </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
@@ -64,7 +79,7 @@
                         Command = "{Binding SaveButtonCommand}"/>
             </StackLayout>
             <Image 
-                        Margin="5,0,0,14"
+                        Margin="5,0,0,54"
                         Source="bomb.png"
                         HorizontalOptions="Start"
                         VerticalOptions="EndAndExpand"

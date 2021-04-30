@@ -45,7 +45,7 @@
                         Command = "{Binding ButtonCommand}"/>
             </StackLayout>
             <Image 
-                        Margin="5,0,0,14"
+                        Margin="5,0,0,54"
                         Source="bomb.png"
                         HorizontalOptions="Start"
                         VerticalOptions="EndAndExpand"

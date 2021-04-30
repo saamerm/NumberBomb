@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converters="clr-namespace:NumberBomb"
@@ -37,11 +36,13 @@
 
             <StackLayout
                     Orientation="Horizontal"
-                    HorizontalOptions="End">
+                    HorizontalOptions="End"
+                    Margin="0,0,10,0">
                 <Image
                         Source="{Binding PauseImage, Converter={converters:ImageConverter}}"                       
                         VerticalOptions="Center"
-                        HorizontalOptions="End">
+                        HorizontalOptions="End"
+                        Margin="0,0,10,0">
                   <Image.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PlayCommand}"/>
                   </Image.GestureRecognizers>
@@ -124,10 +125,10 @@
                             <yummy:Border Color="#0A1B202C" Thickness="1"/>
                           </yummy:PancakeView.Border>               
                 <Button Text="SUBMIT"
-                            FontSize="24"
-                            BackgroundColor="#343434"
+                            FontSize="18"
+                            BackgroundColor="Black"
                             TextColor="White"
-                            WidthRequest="240.5"
+                            WidthRequest="240"
                             HeightRequest="66"
                             FontFamily="PatrickFont"                            
                             Command = "{Binding CheckCommand}"/>

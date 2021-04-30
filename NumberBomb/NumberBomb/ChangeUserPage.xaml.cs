@@ -12,15 +12,6 @@ namespace NumberBomb
             InitializeComponent();
 
             BindingContext = new ChangeUserViewModel();
-
-            if (Device.RuntimePlatform.Equals("Android"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }
-            else if (Device.RuntimePlatform.Equals("iOS"))
-            {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            }
         }
     }
 }

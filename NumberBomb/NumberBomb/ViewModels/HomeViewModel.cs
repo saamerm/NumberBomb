@@ -102,7 +102,7 @@ namespace NumberBomb.ViewModels
 
     private void StartCommandExecute(object obj)
     {
-            App.Current.MainPage.Navigation.PushAsync(new DifficultyPage());
+      App.Current.MainPage.Navigation.PushAsync(new DifficultyPage());
     }
   }
 }

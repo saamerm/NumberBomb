@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MediaManager;
 using NumberBomb.Enums;
@@ -36,6 +37,7 @@ namespace NumberBomb.ViewModels
         public ICommand BackButtonClicked { get; set; }
         public Action<bool> OnCheckFailed { get; set; }
         public bool IsPlaying { get; set; }
+        public string LoseMessage { get; set; }
         Random _randomNumberGenrator;
 
         public string PauseImage
@@ -226,13 +228,18 @@ namespace NumberBomb.ViewModels
             }
             else
             {
-                CheckGuess();
+                await CheckGuess();
             }
             GuessEntry = "";
-            OnCheckFailed?.Invoke(true);
+
+            // Chances Remaining resets to 10 as soon
+            // as the user loses or wins the page, so we dont
+            // want the popup to appear at that time
+            if (ChancesRemaining != 10)
+                OnCheckFailed?.Invoke(true);
         }
 
-        private void CheckGuess()
+        private async Task CheckGuess()
         {
             PreviousGuess = GuessedValue;
             if (RandomNumber == GuessedValue)
@@ -241,7 +248,7 @@ namespace NumberBomb.ViewModels
             }
             else
             {
-                IncorrectInput();
+                await IncorrectInput();
             }
         }
 
@@ -262,17 +269,17 @@ namespace NumberBomb.ViewModels
             Reset();
         }
 
-        private void IncorrectInput()
+        private async Task IncorrectInput()
         {
             //if medium or hard and the user chose one of the 5 wrong number push to the losepage
 
             var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
-
             if (difficulitylevel == (Difficulty.Medium.ToString()) || difficulitylevel == (Difficulty.Hard.ToString()))
             {
                 if(GuessedValue == IncorrectNumber1 || GuessedValue == IncorrectNumber2 || GuessedValue == IncorrectNumber3 || GuessedValue == IncorrectNumber4 || GuessedValue == IncorrectNumber5)
                 {
-                    App.Current.MainPage.Navigation.PushAsync(new LosePage());
+                    LoseMessage = "Sorry, " + GuessedValue + " is the number bomb";
+                    App.Current.MainPage.Navigation.PushAsync(new LosePage(LoseMessage));
                     Reset();
                     return;
                 }
@@ -290,7 +297,8 @@ namespace NumberBomb.ViewModels
             {
                 if (RandomNumber != GuessedValue)
                 {
-                    App.Current.MainPage.Navigation.PushAsync(new LosePage());
+                    LoseMessage = "Sorry, you did not find the key and the bomb exploded";
+                    await App.Current.MainPage.Navigation.PushAsync(new LosePage(LoseMessage));
                     Reset();
                 }
             }

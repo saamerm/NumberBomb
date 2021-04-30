@@ -19,10 +19,11 @@
     <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Microsoft.AppCenter" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.2.0" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.0.9" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
@@ -39,12 +40,14 @@
     <None Remove="Resources\numberbombmusic.mp3" />
     <None Remove="volume_off_24px.svg" />
     <None Remove="volume_up_24px.svg" />
+    <None Remove="Resources\lf30_editor_hfl3dsx7.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
     <EmbeddedResource Include="Fonts\FontAwesome5Regular.otf" />
     <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
     <EmbeddedResource Include="Resources\numberbombmusic.mp3" />
+    <EmbeddedResource Include="Resources\lf30_editor_hfl3dsx7.json" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />

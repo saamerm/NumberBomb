@@ -41,30 +41,73 @@
                    FontFamily="PatrickFont"
                    Padding="13,0,13,0"
                    HorizontalTextAlignment="Center"/>
-
             <StackLayout Margin="0,60,0,0" Orientation="Vertical">
-                    <Button BackgroundColor="#61BC52"
-                            Margin="127,30,127,0"
+                <Grid HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RestartCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            FontSize="18"
+                            Source="Group.png"
+                            WidthRequest="145"
+                            HeightRequest="85"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+
+                    <Label HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
                             Text="Restart"
+                            TextColor="Black"
                             FontFamily="PatrickFont"
-                            CornerRadius="20"
-                            WidthRequest="12"
-                            HeightRequest="44"
-                            TextColor="White"
-                            Command = "{Binding RestartCommand}"/>
-                    <Button BackgroundColor="#61BC52"
-                            Margin="127,30,127,0"
-                            FontSize="18"
+                            Margin="25"
+                            FontSize="20"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+                </Grid>
+
+                <Grid HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        >
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MainCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Source="Group.png"
+                            WidthRequest="145"
+                            HeightRequest="85"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+
+                    <Label HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
                             Text="Main Menu"
+                            TextColor="Black"
                             FontFamily="PatrickFont"
-                            CornerRadius="20"
-                            HeightRequest="44"
-                            WidthRequest="42"
-                            TextColor="White"
-                            Command = "{Binding MainCommand}"/>
-                </StackLayout>
+                            Margin="25"
+                            FontSize="20"
+                            Grid.Row="0"
+                            Grid.Column="0"/>
+                </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

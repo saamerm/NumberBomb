@@ -16,11 +16,11 @@ namespace NumberBomb
 
            if (Device.RuntimePlatform.Equals("Android"))
             {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                TitleLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
             }
             else if (Device.RuntimePlatform.Equals("iOS"))
             {
-                TitleLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                TitleLabel.HorizontalOptions = LayoutOptions.StartAndExpand;
             } 
 
             GamePageViewModel.OnCheckFailed = ((obj) =>
