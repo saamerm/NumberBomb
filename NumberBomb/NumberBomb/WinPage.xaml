@@ -22,13 +22,13 @@
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="YAY"
+        <StackLayout Padding="10">
+            <Label Text="CONGRATULATIONS!"
                    TextColor="White"
-                   FontSize="48"
+                   FontSize="40"
                    FontFamily="PatrickFont"
                    HorizontalTextAlignment="Center"/>
-            <Label Text="Fortunately you have found the key and used it to defuse bomb."
+            <Label Text="You have found the key and defused the bomb to save the day!"
                    TextColor="White"
                    FontSize="22"
                    FontFamily="PatrickFont"

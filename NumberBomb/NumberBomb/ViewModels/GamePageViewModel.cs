@@ -189,7 +189,7 @@ namespace NumberBomb.ViewModels
             var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
             if (response == true)
             {
-                Application.Current.MainPage.Navigation.PopAsync();
+                Application.Current.MainPage.Navigation.PopToRootAsync();
             }
         }
 
@@ -207,10 +207,13 @@ namespace NumberBomb.ViewModels
 
         private async void RefreshIconCommandExecute(object obj)
         {
-            var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
-            if(response == true)
+            if (ChancesRemaining < 10)
             {
-                Reset();
+                var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
+                if (response == true)
+                {
+                    Reset();
+                }
             }
         }
 
@@ -278,7 +281,7 @@ namespace NumberBomb.ViewModels
             {
                 if(GuessedValue == IncorrectNumber1 || GuessedValue == IncorrectNumber2 || GuessedValue == IncorrectNumber3 || GuessedValue == IncorrectNumber4 || GuessedValue == IncorrectNumber5)
                 {
-                    LoseMessage = "Sorry, " + GuessedValue + " is the number bomb";
+                    LoseMessage = "Unfortunately " + GuessedValue + " was one of the number bombs";
                     App.Current.MainPage.Navigation.PushAsync(new LosePage(LoseMessage));
                     Reset();
                     return;
@@ -297,7 +300,7 @@ namespace NumberBomb.ViewModels
             {
                 if (RandomNumber != GuessedValue)
                 {
-                    LoseMessage = "Sorry, you did not find the key and the bomb exploded";
+                    LoseMessage = "Oops! You did not find the key this time";
                     await App.Current.MainPage.Navigation.PushAsync(new LosePage(LoseMessage));
                     Reset();
                 }
