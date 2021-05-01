@@ -9,10 +9,18 @@ namespace NumberBomb.ViewModels
     public class DifficultyViewModel : BaseViewModel
     {
         public ICommand DiffcultyCommand { get; set; }
+        public ICommand BackButtonClicked { get; set; }
 
         public DifficultyViewModel()
         {
             DiffcultyCommand = new Command<string>(DifficultyCommandExcute);
+            BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+
+        }
+
+        private void BackButtonClickedCommandExecute(object obj)
+        {
+            Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void DifficultyCommandExcute(string selectedDiffculty)

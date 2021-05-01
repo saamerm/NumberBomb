@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              NavigationPage.HasBackButton="False"
              x:Class="NumberBomb.LosePage">
     <NavigationPage.TitleView>
@@ -21,39 +21,95 @@
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#2A2A2A">
-            <StackLayout Margin="0,145,0,0">
-                <Label Text="Sorry, you did not find the key and the bomb exploded"
-                       TextColor="#FF0000"
+        <Grid>
+            <forms:AnimationView
+                x:Name="AnimationView"
+                Animation="Resources.lf30_editor_hfl3dsx7.json"
+                AutoPlay="True"
+                AnimationSource="EmbeddedResource"
+                RepeatMode="Restart"
+                WidthRequest="300"
+                HeightRequest="300" />
+            <StackLayout
+                         x:Name="LoseLayout"
+                         BackgroundColor="#1D1C1B"
+                         Opacity="0">
+                <Label x:Name="messagelabel"
+                       Text="{Binding label}"
+                       TextColor="#FFFFFF"
                        FontSize="30"
                        FontFamily="PatrickFont"
                        HorizontalTextAlignment="Center"
-                       Padding="24,0,24,0"/>
+                       Padding="24,173,24,0"/>
 
                 <StackLayout Margin="0,60,0,0" Orientation="Vertical">
-                    <Button BackgroundColor="#61BC52"
-                            Margin="127,30,127,0"
-                            VerticalOptions="Center"
-                            FontSize="18"
-                            Text="Restart"
-                            FontFamily="PatrickFont"
-                            CornerRadius="20"
-                            WidthRequest="42"
-                            HeightRequest="44"
-                            TextColor="White"
-                            Command = "{Binding RestartCommand}"/>
-                    <Button BackgroundColor="#61BC52"
-                            Margin="127,30,127,0"
-                            FontSize="18"
-                            Text="Main Menu"
-                            FontFamily="PatrickFont"
-                            CornerRadius="20"
-                            HeightRequest="44"
-                            WidthRequest="42"
-                            TextColor="White"
-                            Command = "{Binding MainCommand}"/>
+                    <Grid HorizontalOptions="Center"
+                          VerticalOptions="Center">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RestartCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Source="Group.png"
+                             WidthRequest="145"
+                             HeightRequest="85"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+
+                        <Label HorizontalOptions="Center"
+                             HorizontalTextAlignment="Center"
+                             Text="Restart"
+                             TextColor="Black"
+                             FontFamily="PatrickFont"
+                             Margin="25"
+                             FontSize="20"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                    </Grid>
+
+                    <Grid HorizontalOptions="Center"
+                          VerticalOptions="Center"
+                          >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MainCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             Source="Group.png"
+                             WidthRequest="145"
+                             HeightRequest="85"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+
+                        <Label HorizontalOptions="Center"
+                             HorizontalTextAlignment="Center"
+                             Text="Main Menu"
+                             TextColor="Black"
+                             FontFamily="PatrickFont"
+                             Margin="25"
+                             FontSize="20"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                    </Grid>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

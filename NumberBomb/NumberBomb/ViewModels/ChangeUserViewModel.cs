@@ -10,6 +10,7 @@ namespace NumberBomb.ViewModels
     {
         public string _newName;
         public ICommand SaveButtonCommand { get; set; }
+        public ICommand BackButtonClicked { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string ChangeName
@@ -32,6 +33,13 @@ namespace NumberBomb.ViewModels
         {
             ChangeName = Preferences.Get("NameTag", string.Empty);
             SaveButtonCommand = new Command(SaveCommandExecute);
+            BackButtonClicked = new Command(BackButtonClickedCommandExecute);
+
+        }
+
+        private void BackButtonClickedCommandExecute(object obj)
+        {
+            Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void SaveCommandExecute(object obj)

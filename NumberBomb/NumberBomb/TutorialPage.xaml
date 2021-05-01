@@ -3,23 +3,38 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="NumberBomb.TutorialPage"
+    NavigationPage.HasBackButton="False"
     BackgroundColor="#fdfdfd">
     <NavigationPage.TitleView>
-         <StackLayout Orientation="Horizontal">
-            <Label  x:Name="TitleLabel"
+        <Grid >
+      <ImageButton HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Center"
+                    Margin="0,0,12,0"
+                    Command = "{Binding BackButtonClicked}"
+                    BackgroundColor="White"
+                    WidthRequest="16"
+                    HeightRequest="30">
+        <ImageButton.Source>
+          <FontImageSource Color="#343434"
+                                     FontFamily="FontAwesome5Solid"
+                                     Glyph="&#xf053;"/>
+        </ImageButton.Source>
+      </ImageButton>
+      <Label  x:Name="TitleLabel"
                     FontSize="25"
                     TextColor="Black"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"
                     FontFamily="PatrickFont">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Number"/>
-                        <Span Text="BOMB" TextColor="Red"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label> 
-         </StackLayout>
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Number"/>
+            <Span Text="BOMB" TextColor="Red"/>
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+
+    </Grid>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout
@@ -50,9 +65,11 @@
                          Grid.Column="0"/>
             </Grid>
             <Button Text="OK"
-                    BackgroundColor="#343434"
+                    BackgroundColor="Black"
                     TextColor="White"
-                    WidthRequest="241"
+                    FontSize="18"
+                    FontFamily="PatrickFont"
+                    WidthRequest="240"
                     HeightRequest="42"
                     Margin="59,0,75,0"
                     Command="{Binding OkCommand}"

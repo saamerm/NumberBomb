@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
 using Plugin.StoreReview;
 using Rg.Plugins.Popup.Services;
@@ -39,12 +40,23 @@ namespace NumberBomb.ViewModels
       }
       CheckNumberOfVisit();
     }
-    private void OpenAppReviewPopup()
+
+    private async Task OpenAppReviewPopup()
     {
-      var dialog = new AppReviewPopupPage();
-      dialog.BindingContext = this;
-      PopupNavigation.Instance.PushAsync(dialog);
+       Analytics.TrackEvent("PageView: AppReviewPopup");
+       var alert = await App.Current.MainPage.DisplayAlert(
+                "", "You've saved the day, we'd love your feedback. Do you like the game?",
+                "Yes",
+                "No");
+       if (alert)
+       {
+         Analytics.TrackEvent("SelectAction: AppReviewPopup-Like");
+         YesCommandExcute(null);
+       }
+       else
+         NoCommandExcute(null);
     }
+
     private void CheckNumberOfVisit()
     {
       if (NumberOfVisit == 1 || NumberOfVisit == 3 || NumberOfVisit == 10)
@@ -74,6 +86,7 @@ namespace NumberBomb.ViewModels
     {
       await CrossStoreReview.Current.RequestReview(false);
     }
+
     private void RestartCommandExecute(object obj)
     {
       Application.Current.MainPage.Navigation.PopAsync();

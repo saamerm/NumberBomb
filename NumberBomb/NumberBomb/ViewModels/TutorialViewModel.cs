@@ -34,11 +34,7 @@ namespace NumberBomb.ViewModels
 
         private async void BackButtonClickedCommandExecute(object obj)
         {
-            var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
-            if (response == true)
-            {
-                Application.Current.MainPage.Navigation.PopAsync();
-            }
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void CheckDifficultyLevel()
