@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
+using NumberBomb.Enums;
+using NumberBomb.Helper;
 using Plugin.StoreReview;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -68,9 +70,9 @@ namespace NumberBomb.ViewModels
     }
     private async Task PostApiCall()
     {
-      var url = "https://script.google.com/macros/s/AKfycbwGUUx8-D7ABvmE47urkspg-_ygi4bag5-ts6kC4UbIvWTCbieHkE8w6nXoAaX1DnCEQQ/exec";
+      var url = Constants.Api_Key;
       var client = new HttpClient();
-      var data = new ScoreItem { Name = nameTag, Score = finalScore };
+      var data = new ScoreItem { Name = nameTag, Score = finalScore, Difficuilty = Preferences.Get("difficulty", Difficulty.Easy.ToString()) };
       var jsonString = JsonConvert.SerializeObject(data);
       var requestContent = new StringContent(jsonString);
       var response = await client.PostAsync(url, requestContent);

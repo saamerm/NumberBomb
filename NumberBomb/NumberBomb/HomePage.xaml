@@ -6,6 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="NumberBomb.HomePage">
     <ContentPage.Content>
+    <Grid>
         <StackLayout VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal">
                  <ImageButton  WidthRequest="24"
@@ -96,5 +97,14 @@
                         WidthRequest="138"
                         HeightRequest="138"/>
         </StackLayout>
-    </ContentPage.Content>
+      <StackLayout  IsVisible="{Binding IsBusy}"
+             Margin="0,300,0,0" >
+        <ActivityIndicator Color="Red"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsRunning="{Binding IsBusy}"
+                           />
+      </StackLayout>
+    </Grid>
+  </ContentPage.Content>
 </ContentPage>

@@ -130,6 +130,11 @@ namespace NumberBomb.ViewModels
                 IsPlaying = Preferences.Get("playMusic", false);
                 PauseImage = (IsPlaying) ? "volume_up_24px.png" : "volume_off_24px.png";
             }
+            if (IsPlaying)
+            {
+                RepeateMusic();
+            }
+               
         }
 
         private void GenerateNumber()
@@ -189,6 +194,8 @@ namespace NumberBomb.ViewModels
             var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
             if (response == true)
             {
+                var isPlaying = Preferences.Get("playMusic", false);
+                MessagingCenter.Send<GamePageViewModel, bool>(this, "isPlaying", isPlaying);
                 Application.Current.MainPage.Navigation.PopToRootAsync();
             }
         }
@@ -309,6 +316,15 @@ namespace NumberBomb.ViewModels
             {
                 ChancesRemaining -= 1;
             }
+        }
+        private void RepeateMusic()
+        {
+            Device.StartTimer(new TimeSpan(0, 3, 3), () =>
+               {
+                   var audio = CrossMediaManager.Current;
+                   audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+                   return IsPlaying;
+               });
         }
     }
 }
