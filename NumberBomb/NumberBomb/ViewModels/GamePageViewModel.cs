@@ -319,12 +319,16 @@ namespace NumberBomb.ViewModels
         }
         private void RepeateMusic()
         {
-            Device.StartTimer(new TimeSpan(0, 2, 8), () =>
+            Device.StartTimer(new TimeSpan(0, 1, 20), () =>
                {
-                   var audio = CrossMediaManager.Current;
-                   audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+                   PlayingMusic();
                    return IsPlaying;
                });
         }
-    }
+        private async void PlayingMusic()
+        {
+          var audio = CrossMediaManager.Current;
+          await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+        }
+  }
 }

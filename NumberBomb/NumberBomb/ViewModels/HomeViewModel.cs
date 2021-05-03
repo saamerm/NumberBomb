@@ -92,15 +92,18 @@ namespace NumberBomb.ViewModels
       }
       if(IsPlaying)
       {
-        Device.StartTimer(new TimeSpan(0, 2, 8), () =>
+        Device.StartTimer(new TimeSpan(0, 1, 20), () =>
         {
-          var audio = CrossMediaManager.Current;
-          audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+          RepeateMusic();
           return IsPlaying;
         });
       }
     }
-
+    private async void RepeateMusic()
+    {
+      var audio = CrossMediaManager.Current;
+      await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+    }
     private async void PlayCommandExcute(object obj)
     {
       if (!IsPlaying)
