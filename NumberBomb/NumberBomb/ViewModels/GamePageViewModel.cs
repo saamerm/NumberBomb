@@ -319,7 +319,7 @@ namespace NumberBomb.ViewModels
         }
         private void RepeateMusic()
         {
-            Device.StartTimer(new TimeSpan(0, 3, 3), () =>
+            Device.StartTimer(new TimeSpan(0, 2, 8), () =>
                {
                    var audio = CrossMediaManager.Current;
                    audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
