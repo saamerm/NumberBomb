@@ -103,19 +103,21 @@ namespace NumberBomb.ViewModels
     }
     private async void PlayCommandExcute(object obj)
     {
+      var audio = CrossMediaManager.Current;
       if (!IsPlaying)
       {
         Preferences.Set("playMusic", true);
         IsPlaying = true;
         ButtonText = "Music: On";
-        DependencyService.Get<IMediaService>().StarMusic();
+
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
       else
       {
         Preferences.Set("playMusic", false);
         IsPlaying = false;
         ButtonText = "Music: Off";
-        DependencyService.Get<IMediaService>().StopMusic();
+        await audio.Stop();
       }
     }
 

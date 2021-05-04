@@ -43,7 +43,8 @@ namespace NumberBomb
         {
            if (Preferences.Get("playMusic", false))
            {
-        DependencyService.Get<IMediaService>().StopMusic();
+        var audio = CrossMediaManager.Current;
+        await audio.Stop();
       }
           
         }
@@ -56,7 +57,8 @@ namespace NumberBomb
         {
           if (Preferences.Get("playMusic", false))
           {
-        DependencyService.Get<IMediaService>().StarMusic();
+        var audio = CrossMediaManager.Current;
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
         }
     }
