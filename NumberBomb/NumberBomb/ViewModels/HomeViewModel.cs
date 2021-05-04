@@ -1,6 +1,7 @@
 ﻿using MediaManager;
 using Microsoft.AppCenter.Crashes;
 using NumberBomb.Helper;
+using NumberBomb.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Net.Http;
@@ -84,25 +85,21 @@ namespace NumberBomb.ViewModels
       {
         IsPlaying = Preferences.Get("playMusic", false);
         ButtonText = (IsPlaying) ? "Music: On" : "Music: Off";
+   
       }
       else
       {
         IsPlaying = false;
         ButtonText = "Music: Off";
       }
-      if(IsPlaying)
-      {
-        Device.StartTimer(new TimeSpan(0, 1, 20), () =>
+    
+        Device.StartTimer(new TimeSpan(0, 1, 0), () =>
         {
-          RepeateMusic();
-          return IsPlaying;
+          // DependencyService.Get<IMediaService>().StarMusic();
+          CheckMusic();
+          return Preferences.Get("playMusic", false);
         });
-      }
-    }
-    private async void RepeateMusic()
-    {
-      var audio = CrossMediaManager.Current;
-      await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+    
     }
     private async void PlayCommandExcute(object obj)
     {
@@ -110,16 +107,15 @@ namespace NumberBomb.ViewModels
       {
         Preferences.Set("playMusic", true);
         IsPlaying = true;
-        var audio = CrossMediaManager.Current;
         ButtonText = "Music: On";
-        await audio.PlayFromAssembly("music.mp3", typeof(HomeViewModel).Assembly);
+        DependencyService.Get<IMediaService>().StarMusic();
       }
       else
       {
+        Preferences.Set("playMusic", false);
         IsPlaying = false;
         ButtonText = "Music: Off";
-        Preferences.Set("playMusic", false);
-        await CrossMediaManager.Current.Stop();
+        DependencyService.Get<IMediaService>().StopMusic();
       }
     }
 
@@ -164,6 +160,14 @@ namespace NumberBomb.ViewModels
       finally
       {
         IsBusy = false;
+      }
+    }
+    private async void CheckMusic()
+    {
+      if (Preferences.Get("playMusic", false))
+      {
+        var audio = CrossMediaManager.Current;
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
     }
   }

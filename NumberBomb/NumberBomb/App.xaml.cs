@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MediaManager;
 using NumberBomb.ViewModels;
+using NumberBomb.Interfaces;
 
 namespace NumberBomb
 {
@@ -35,15 +36,15 @@ namespace NumberBomb
                   "uwp={Your UWP App secret here};" +
                   "android=0aa22654-3b43-49f1-9d6f-9f7c72c157e8;",
                   typeof(Analytics), typeof(Crashes));
-            CheckMusic();
+            //CheckMusic();
         }
 
         protected override async void OnSleep()
         {
            if (Preferences.Get("playMusic", false))
            {
-             await CrossMediaManager.Current.Stop();
-           }
+        DependencyService.Get<IMediaService>().StopMusic();
+      }
           
         }
 
@@ -55,9 +56,8 @@ namespace NumberBomb
         {
           if (Preferences.Get("playMusic", false))
           {
-            var audio = CrossMediaManager.Current;
-            await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
-          }
+        DependencyService.Get<IMediaService>().StarMusic();
+      }
         }
     }
 }

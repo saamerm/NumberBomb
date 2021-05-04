@@ -31,6 +31,7 @@ namespace NumberBomb.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public int _minimum;
         public int _maximum;
+    public IMediaManager audio;
         public ICommand PlayCommand { get; set; }
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
@@ -130,14 +131,23 @@ namespace NumberBomb.ViewModels
                 IsPlaying = Preferences.Get("playMusic", false);
                 PauseImage = (IsPlaying) ? "volume_up_24px.png" : "volume_off_24px.png";
             }
-            if (IsPlaying)
-            {
-                RepeateMusic();
-            }
-               
-        }
+      Device.StartTimer(new TimeSpan(0, 1, 0), () =>
+      {
+        // DependencyService.Get<IMediaService>().StarMusic();
+        CheckMusic();
+        return Preferences.Get("playMusic", false);
+      });
 
-        private void GenerateNumber()
+    }
+    private async void CheckMusic()
+    {
+      if (Preferences.Get("playMusic", false))
+      {
+        var audio = CrossMediaManager.Current;
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+      }
+    }
+    private void GenerateNumber()
         {
             var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
 
@@ -317,18 +327,19 @@ namespace NumberBomb.ViewModels
                 ChancesRemaining -= 1;
             }
         }
-        private void RepeateMusic()
-        {
-            Device.StartTimer(new TimeSpan(0, 1, 20), () =>
-               {
-                   PlayingMusic();
-                   return IsPlaying;
-               });
-        }
-        private async void PlayingMusic()
-        {
-          var audio = CrossMediaManager.Current;
-          await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
-        }
+    public void RepeateMusic()
+    {
+      var IsPlaying = Preferences.Get("playMusic", false);
+      Device.StartTimer(new TimeSpan(0, 0, 10), () =>
+      {
+        PlayingMusic();
+        return IsPlaying;
+      });
+    }
+    private async void PlayingMusic()
+    {
+      audio = CrossMediaManager.Current;
+      await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+    }
   }
 }
