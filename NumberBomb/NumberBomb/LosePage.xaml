@@ -58,7 +58,7 @@
 
                         <Image HorizontalOptions="Center"
                              VerticalOptions="Center"
-                             Source="Group.png"
+                             Source="GroupW.png"
                              WidthRequest="145"
                              HeightRequest="85"
                              Grid.Row="0"
@@ -92,7 +92,7 @@
                         <Image
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
-                             Source="Group.png"
+                             Source="GroupW.png"
                              WidthRequest="145"
                              HeightRequest="85"
                              Grid.Row="0"

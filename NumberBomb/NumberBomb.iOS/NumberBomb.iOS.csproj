@@ -155,8 +155,9 @@
     <BundleResource Include="Resources\animation.png" />
     <BundleResource Include="Resources\cloud.png" />
     <BundleResource Include="Resources\darkcloud.png" />
-    <BundleResource Include="Resources\Group.png" />
     <BundleResource Include="Resources\volume_off_24px.png" />
     <BundleResource Include="Resources\volume_up_24px.png" />
+    <BundleResource Include="Resources\Group.png" />
+    <BundleResource Include="Resources\GroupW.png" />
   </ItemGroup>
 </Project>

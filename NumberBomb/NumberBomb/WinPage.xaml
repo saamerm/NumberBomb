@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              NavigationPage.HasBackButton="False"
              x:Class="NumberBomb.WinPage"
-             BackgroundColor="#1D1C1B">
+             BackgroundColor="#fdfdfd">
     <NavigationPage.TitleView>
          <StackLayout Orientation="Horizontal">
             <Label  x:Name="TitleLabel"
@@ -22,97 +22,100 @@
          </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="CONGRATULATIONS!"
-                   TextColor="White"
-                   FontSize="40"
-                   FontFamily="PatrickFont"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="You have found the key and defused the bomb to save the day!"
-                   TextColor="White"
-                   FontSize="22"
-                   FontFamily="PatrickFont"
-                   Padding="13,0,13,0"
-                   HorizontalTextAlignment="Center"/>
-            <Label x:Name="label"
-                   TextColor="White"
-                   FontSize="22"
-                   FontFamily="PatrickFont"
-                   Padding="13,0,13,0"
-                   HorizontalTextAlignment="Center"/>
-            <Label Text="Check out your rank on the leaderboard!"
-                   TextColor="White"
-                   FontSize="22"
-                   FontFamily="PatrickFont"
-                   Padding="13,0,13,0"
-                   HorizontalTextAlignment="Center"/>
-            <StackLayout Margin="0,60,0,0" Orientation="Vertical">
-                <Grid HorizontalOptions="Center"
-                        VerticalOptions="Center">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RestartCommand}"/>
-                    </Grid.GestureRecognizers>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+        <Grid>
+            <forms:AnimationView
+                x:Name="AnimationConfetti"
+                Animation="Resources.54504-confetti.json"
+                AnimationSource="EmbeddedResource"
+                AutoPlay="True"
+                RepeatMode="Infinite"
+                WidthRequest="300"
+                HeightRequest="300" />
+            <StackLayout Padding="10"
+                         x:Name="WinLayout">
+                <Label Text="CONGRATULATIONS!"
+                       FontSize="40"
+                       FontFamily="PatrickFont"
+                       Margin="0,40,0,0"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="You have successfully defused the bomb"
+                       FontSize="22"
+                       FontFamily="PatrickFont"
+                       Padding="13,40,13,0"
+                       HorizontalTextAlignment="Center"/>
+                <Label x:Name="label"
+                       FontSize="22"
+                       FontFamily="PatrickFont"
+                       Padding="13,0,13,0"
+                       HorizontalTextAlignment="Center"/>
+                <StackLayout Margin="0,60,0,0" Orientation="Vertical">
+                    <Grid HorizontalOptions="Center"
+                            VerticalOptions="Center">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RestartCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Image HorizontalOptions="Center"
+                        <Image HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Source="Group.png"
+                                WidthRequest="145"
+                                HeightRequest="85"
+                                Grid.Row="0"
+                                Grid.Column="0"/>
+
+                        <Label HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Restart"
+                                TextColor="#ffffff"
+                                FontFamily="PatrickFont"
+                                Margin="25"
+                                FontSize="20"
+                                Grid.Row="0"
+                                Grid.Column="0"/>
+                    </Grid>
+
+                    <Grid HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            Source="Group.png"
-                            WidthRequest="145"
-                            HeightRequest="85"
-                            Grid.Row="0"
-                            Grid.Column="0"/>
+                            >
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding MainCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Label HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="Restart"
-                            TextColor="Black"
-                            FontFamily="PatrickFont"
-                            Margin="25"
-                            FontSize="20"
-                            Grid.Row="0"
-                            Grid.Column="0"/>
-                </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Grid HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        >
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding MainCommand}"/>
-                    </Grid.GestureRecognizers>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                        <Image
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Source="Group.png"
+                                WidthRequest="145"
+                                HeightRequest="85"
+                                Grid.Row="0"
+                                Grid.Column="0"/>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                            Source="Group.png"
-                            WidthRequest="145"
-                            HeightRequest="85"
-                            Grid.Row="0"
-                            Grid.Column="0"/>
-
-                    <Label HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="Main Menu"
-                            TextColor="Black"
-                            FontFamily="PatrickFont"
-                            Margin="25"
-                            FontSize="20"
-                            Grid.Row="0"
-                            Grid.Column="0"/>
-                </Grid>
+                        <Label HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Main Menu"
+                                TextColor="#ffffff"
+                                FontFamily="PatrickFont"
+                                Margin="25"
+                                FontSize="20"
+                                Grid.Row="0"
+                                Grid.Column="0"/>
+                    </Grid>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

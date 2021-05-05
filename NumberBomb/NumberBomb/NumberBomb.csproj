@@ -40,6 +40,8 @@
     <None Remove="volume_off_24px.svg" />
     <None Remove="volume_up_24px.svg" />
     <None Remove="Resources\lf30_editor_hfl3dsx7.json" />
+    <None Remove="Resources\30111-confetti-animation.json" />
+    <None Remove="Resources\54504-confetti.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fonts\PatrickHand-Regular.ttf" />
@@ -47,6 +49,7 @@
     <EmbeddedResource Include="Fonts\FontAwesome5Solid.otf" />
     <EmbeddedResource Include="Resources\numberbombmusic.mp3" />
     <EmbeddedResource Include="Resources\lf30_editor_hfl3dsx7.json" />
+    <EmbeddedResource Include="Resources\54504-confetti.json" />
   </ItemGroup>
   <ItemGroup>
     <SharedImage Include="bomb.svg" BaseSize="138,138" />
