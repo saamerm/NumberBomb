@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="Views\" />
-    <Folder Include="Helper\" />
     <Folder Include="Enums\" />
     <Folder Include="Converters\" />
   </ItemGroup>

@@ -31,6 +31,7 @@ namespace NumberBomb.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public int _minimum;
         public int _maximum;
+    public IMediaManager audio;
         public ICommand PlayCommand { get; set; }
         public ICommand CheckCommand { get; set; }
         public ICommand RefreshIcon_OnTapped { get; set; }
@@ -130,9 +131,23 @@ namespace NumberBomb.ViewModels
                 IsPlaying = Preferences.Get("playMusic", false);
                 PauseImage = (IsPlaying) ? "volume_up_24px.png" : "volume_off_24px.png";
             }
-        }
+      Device.StartTimer(new TimeSpan(0, 1, 0), () =>
+      {
+        // DependencyService.Get<IMediaService>().StarMusic();
+        CheckMusic();
+        return Preferences.Get("playMusic", false);
+      });
 
-        private void GenerateNumber()
+    }
+    private async void CheckMusic()
+    {
+      if (Preferences.Get("playMusic", false))
+      {
+        var audio = CrossMediaManager.Current;
+        await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+      }
+    }
+    private void GenerateNumber()
         {
             var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
 
@@ -189,6 +204,8 @@ namespace NumberBomb.ViewModels
             var response = await App.Current.MainPage.DisplayAlert("Are you sure you want to exit?", "", "Yes", "No");
             if (response == true)
             {
+                var isPlaying = Preferences.Get("playMusic", false);
+                MessagingCenter.Send<GamePageViewModel, bool>(this, "isPlaying", isPlaying);
                 Application.Current.MainPage.Navigation.PopToRootAsync();
             }
         }
@@ -310,5 +327,19 @@ namespace NumberBomb.ViewModels
                 ChancesRemaining -= 1;
             }
         }
+    public void RepeateMusic()
+    {
+      var IsPlaying = Preferences.Get("playMusic", false);
+      Device.StartTimer(new TimeSpan(0, 0, 10), () =>
+      {
+        PlayingMusic();
+        return IsPlaying;
+      });
     }
+    private async void PlayingMusic()
+    {
+      audio = CrossMediaManager.Current;
+      await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+    }
+  }
 }

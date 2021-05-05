@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using MediaManager;
 using AndroidX.AppCompat.App;
+using NumberBomb.Droid.Services;
+using Xamarin.Forms;
+using NumberBomb.ViewModels;
 
 namespace NumberBomb.Droid
 {
@@ -26,7 +29,23 @@ namespace NumberBomb.Droid
             CrossMediaManager.Current.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+      try
+      {
+        var audio = CrossMediaManager.Current;
+        MessagingCenter.Subscribe<MediaService>(this, "start",async (sender) =>
+        {
+          await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
+        });
+        MessagingCenter.Subscribe<MediaService>(this, "stop",async (sender) =>
+        {
+          await audio.Stop();
+        });
+
+      }
+      catch (Exception ex)
+      {
+      }
+      LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
