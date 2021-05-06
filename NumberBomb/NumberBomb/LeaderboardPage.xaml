@@ -3,53 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasBackButton="False"
              x:Class="NumberBomb.LeaderboardPage"
-              xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs" xmlns:behaviors="clr-namespace:NumberBomb.Behaviours">
-     <NavigationPage.TitleView>
-    <Grid >
-      <ImageButton HorizontalOptions="StartAndExpand"
+               BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:tabs="clr-namespace:Sharpnado.Tabs;assembly=Sharpnado.Tabs"
+             xmlns:behaviors="clr-namespace:NumberBomb.Behaviours">
+    
+    <ContentPage.Content>
+    <Grid RowDefinitions="auto,auto,auto">
+      <Grid Margin="20,30,10,0" >
+        <ImageButton HorizontalOptions="StartAndExpand"
                     VerticalOptions="Center"
                     Margin="0,0,12,0"
                     Command = "{Binding BackButtonClicked}"
                     BackgroundColor="White"
                     WidthRequest="16"
                     HeightRequest="30">
-        <ImageButton.Source>
-          <FontImageSource Color="#343434"
+          <ImageButton.Source>
+            <FontImageSource Color="#343434"
                                      FontFamily="FontAwesome5Solid"
                                      Glyph="&#xf053;"/>
-        </ImageButton.Source>
-      </ImageButton>
-      <Label  x:Name="TitleLabel"
+          </ImageButton.Source>
+        </ImageButton>
+        <Label  x:Name="TitleLabel"
                     FontSize="25"
                     TextColor="Black"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"
                     FontFamily="PatrickFont">
-        <Label.FormattedText>
-          <FormattedString>
-            <Span Text="Number"/>
-            <Span Text="BOMB" TextColor="Red"/>
-          </FormattedString>
-        </Label.FormattedText>
-      </Label>
-     
-    </Grid>
-    
-    </NavigationPage.TitleView>
-    <ContentPage.Content>
-    <Grid>
-        <StackLayout>
+          <Label.FormattedText>
+            <FormattedString>
+              <Span Text="Number"/>
+              <Span Text="BOMB" TextColor="Red"/>
+            </FormattedString>
+          </Label.FormattedText>
+        </Label>
+
+      </Grid>
       <tabs:TabHostView HorizontalOptions="Center" 
                         x:Name="TabHost"
                        WidthRequest="210"
                         BackgroundColor="White"
-                        HeightRequest="47"
+                        HeightRequest="33"
                         IsSegmented="True"
                         SegmentedHasSeparator="True"
                         SegmentedOutlineColor="Black"
                        SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
                         TabType="Fixed"
-                        VerticalOptions="Center">
+                        VerticalOptions="Center"
+                        Margin="0,40,0,0"
+                        Grid.Row="1">
         <tabs:TabHostView.Behaviors>
           <behaviors:TabSelectedIndexBehaviour  EventName="SelectedTabIndexChanged"
                                                                     CommandParameter="{Binding .}"
@@ -58,39 +61,43 @@
         <tabs:TabHostView.Tabs>
           <tabs:SegmentedTabItem
                                 Label="Easy"
-                                SelectedLabelColor="Black"
-                                SelectedTabColor="Red"
+                                SelectedLabelColor="White"
+                                SelectedTabColor="#343434"
                                FontFamily="PatrickFont"
                                 UnselectedLabelColor="Black" />
           <tabs:SegmentedTabItem
                                 Label="Medium"
-                              SelectedLabelColor="Black"
-                                SelectedTabColor="Red"
+                              SelectedLabelColor="White"
+                                SelectedTabColor="#343434"
                                FontFamily="PatrickFont"
                                 UnselectedLabelColor="Black" />
           <tabs:SegmentedTabItem
                                 Label="Hard"
-                              SelectedLabelColor="Black"
-                                SelectedTabColor="Red"
+                              SelectedLabelColor="White"
+                                SelectedTabColor="#343434"
                                FontFamily="PatrickFont"
                                 UnselectedLabelColor="Black" />
         </tabs:TabHostView.Tabs>
       </tabs:TabHostView>
       <tabs:ViewSwitcher
                 x:Name="Switcher"
-                Margin="30,6,30,0"
-          
+                Margin="30,6,30,10"
+                 Grid.Row="2"
                 Animate="False"
                 HorizontalOptions="FillAndExpand"
                 SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
                 VerticalOptions="FillAndExpand">
-        <StackLayout BackgroundColor = "#EFEFEF">
-          <StackLayout Margin="34,32,34,52" BackgroundColor="#FFFFFF">
+        <pancake:PancakeView BackgroundColor = "#B2F5F5F5"              
+                                 >
+            <pancake:PancakeView.Border>
+            <pancake:Border Color="#CCC9C9C9" Thickness="1"/>
+            </pancake:PancakeView.Border>
+          <Grid RowDefinitions="auto,auto,auto,auto" >
             <Grid 
-                           HeightRequest="110"
-                            ColumnDefinitions="0.3*,0.4*,0.3*">
-              <Label Text="Ranking" 
-                                   Padding="10"
+                  HeightRequest="50" 
+              ColumnDefinitions="0.3*,0.4*,0.3*">
+              <Label Text="Ranking"
+                                  
                                    FontSize="20"
                                    Grid.Column="0"
                                    Grid.Row="0"
@@ -110,18 +117,17 @@
                                    Grid.Column="2"
                                    HorizontalTextAlignment="Center"
                                    FontSize="20"
-                                   Padding="10"
+                                  
                                    TextColor="Black"
                                    FontFamily="PatrickFont"
                                    VerticalTextAlignment="Center"/>
 
             </Grid>
-            <BoxView HeightRequest="1"
-                                        BackgroundColor="#B7B7B7"
-                                        VerticalOptions="End"/>
-            <CollectionView ItemsSource="{Binding ScoreItems}"            
-                                    BackgroundColor="#FFFFFF"
-                                     >
+            <BoxView HeightRequest="1" Grid.Row="1"
+                                        BackgroundColor="#70000000"
+                                        />
+            <CollectionView ItemsSource="{Binding ScoreItems}" 
+                            Grid.Row="2">
               <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
               </CollectionView.ItemsLayout>
@@ -130,11 +136,11 @@
                 <DataTemplate>
                   <Grid >
                     <Grid    
-                                    HeightRequest="50"
+                                    HeightRequest="40"
                                     ColumnDefinitions="0.3*,0.4*,0.3*">
                       <Label Text="{Binding Rank}"
                                      VerticalTextAlignment="Center"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      FontSize="20"
                                      Grid.Column="0"
                                      TextColor="Black"
@@ -143,46 +149,50 @@
                       <Label Text="{Binding Name}"
                                      Grid.Column="1"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
 
                       <Label Text="{Binding Score}"
-                                     HorizontalTextAlignment="Center"
                                      Grid.Column="2"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
                     </Grid>
                     <BoxView HeightRequest="1"
-                                     BackgroundColor="#B7B7B7"
+                                     BackgroundColor="#80B7B7B7"
                                      VerticalOptions="End"/>
                   </Grid>
                 </DataTemplate>
               </CollectionView.ItemTemplate>
             </CollectionView>
-            <Grid 
-                            HeightRequest="110">
+            <Grid Grid.Row="3" 
+                            HeightRequest="70">
               <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
                                FontFamily="PatrickFont"
-                               VerticalOptions="StartAndExpand"
+                              HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Center"
                                HorizontalTextAlignment="Center"/>
             </Grid>
-          </StackLayout>
-        </StackLayout>
-        <StackLayout BackgroundColor = "#EFEFEF">
-          <StackLayout Margin="34,32,34,52" BackgroundColor="#FFFFFF">
+          </Grid>
+        </pancake:PancakeView>
+        <pancake:PancakeView BackgroundColor = "#B2F5F5F5"              
+                                 >
+          <pancake:PancakeView.Border>
+            <pancake:Border Color="#CCC9C9C9" Thickness="1"/>
+          </pancake:PancakeView.Border>
+          <Grid RowDefinitions="auto,auto,auto,auto" >
             <Grid 
-                           HeightRequest="110"
-                            ColumnDefinitions="0.3*,0.4*,0.3*">
-              <Label Text="Ranking" 
-                                   Padding="10"
+                  HeightRequest="50" 
+              ColumnDefinitions="0.3*,0.4*,0.3*">
+              <Label Text="Ranking"
+                                  
                                    FontSize="20"
                                    Grid.Column="0"
                                    Grid.Row="0"
@@ -202,18 +212,17 @@
                                    Grid.Column="2"
                                    HorizontalTextAlignment="Center"
                                    FontSize="20"
-                                   Padding="10"
+                                  
                                    TextColor="Black"
                                    FontFamily="PatrickFont"
                                    VerticalTextAlignment="Center"/>
 
             </Grid>
-            <BoxView HeightRequest="1"
-                                        BackgroundColor="#B7B7B7"
-                                        VerticalOptions="End"/>
-            <CollectionView ItemsSource="{Binding ScoreItems}"            
-                                    BackgroundColor="#FFFFFF"
-                                     >
+            <BoxView HeightRequest="1" Grid.Row="1"
+                                        BackgroundColor="#70000000"
+                                        />
+            <CollectionView ItemsSource="{Binding ScoreItems}" 
+                            Grid.Row="2">
               <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
               </CollectionView.ItemsLayout>
@@ -222,11 +231,11 @@
                 <DataTemplate>
                   <Grid >
                     <Grid    
-                                    HeightRequest="50"
+                                    HeightRequest="40"
                                     ColumnDefinitions="0.3*,0.4*,0.3*">
                       <Label Text="{Binding Rank}"
                                      VerticalTextAlignment="Center"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      FontSize="20"
                                      Grid.Column="0"
                                      TextColor="Black"
@@ -235,46 +244,50 @@
                       <Label Text="{Binding Name}"
                                      Grid.Column="1"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
 
                       <Label Text="{Binding Score}"
-                                     HorizontalTextAlignment="Center"
                                      Grid.Column="2"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
                     </Grid>
                     <BoxView HeightRequest="1"
-                                     BackgroundColor="#B7B7B7"
+                                     BackgroundColor="#80B7B7B7"
                                      VerticalOptions="End"/>
                   </Grid>
                 </DataTemplate>
               </CollectionView.ItemTemplate>
             </CollectionView>
-            <Grid 
-                            HeightRequest="110">
+            <Grid Grid.Row="3" 
+                            HeightRequest="70">
               <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
                                FontFamily="PatrickFont"
-                               VerticalOptions="StartAndExpand"
+                              HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Center"
                                HorizontalTextAlignment="Center"/>
             </Grid>
-          </StackLayout>
-        </StackLayout>
-        <StackLayout BackgroundColor = "#EFEFEF">
-          <StackLayout Margin="34,32,34,52" BackgroundColor="#FFFFFF">
+          </Grid>
+        </pancake:PancakeView>
+        <pancake:PancakeView BackgroundColor = "#B2F5F5F5"              
+                                 >
+          <pancake:PancakeView.Border>
+            <pancake:Border Color="#CCC9C9C9" Thickness="1"/>
+          </pancake:PancakeView.Border>
+          <Grid RowDefinitions="auto,auto,auto,auto" >
             <Grid 
-                           HeightRequest="110"
-                            ColumnDefinitions="0.3*,0.4*,0.3*">
-              <Label Text="Ranking" 
-                                   Padding="10"
+                  HeightRequest="50" 
+              ColumnDefinitions="0.3*,0.4*,0.3*">
+              <Label Text="Ranking"
+                                  
                                    FontSize="20"
                                    Grid.Column="0"
                                    Grid.Row="0"
@@ -294,18 +307,17 @@
                                    Grid.Column="2"
                                    HorizontalTextAlignment="Center"
                                    FontSize="20"
-                                   Padding="10"
+                                  
                                    TextColor="Black"
                                    FontFamily="PatrickFont"
                                    VerticalTextAlignment="Center"/>
 
             </Grid>
-            <BoxView HeightRequest="1"
-                                        BackgroundColor="#B7B7B7"
-                                        VerticalOptions="End"/>
-            <CollectionView ItemsSource="{Binding ScoreItems}"            
-                                    BackgroundColor="#FFFFFF"
-                                     >
+            <BoxView HeightRequest="1" Grid.Row="1"
+                                        BackgroundColor="#70000000"
+                                        />
+            <CollectionView ItemsSource="{Binding ScoreItems}" 
+                            Grid.Row="2">
               <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
               </CollectionView.ItemsLayout>
@@ -314,11 +326,11 @@
                 <DataTemplate>
                   <Grid >
                     <Grid    
-                                    HeightRequest="50"
+                                    HeightRequest="40"
                                     ColumnDefinitions="0.3*,0.4*,0.3*">
                       <Label Text="{Binding Rank}"
                                      VerticalTextAlignment="Center"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      FontSize="20"
                                      Grid.Column="0"
                                      TextColor="Black"
@@ -327,43 +339,44 @@
                       <Label Text="{Binding Name}"
                                      Grid.Column="1"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
 
                       <Label Text="{Binding Score}"
-                                     HorizontalTextAlignment="Center"
                                      Grid.Column="2"
                                      FontSize="20"
-                                     Padding="10"
+                                     HorizontalTextAlignment="Center"
                                      TextColor="Black"
                                      FontFamily="PatrickFont"
                                      VerticalTextAlignment="Center"/>
                     </Grid>
                     <BoxView HeightRequest="1"
-                                     BackgroundColor="#B7B7B7"
+                                     BackgroundColor="#80B7B7B7"
                                      VerticalOptions="End"/>
                   </Grid>
                 </DataTemplate>
               </CollectionView.ItemTemplate>
             </CollectionView>
-            <Grid 
-                            HeightRequest="110">
+            <Grid Grid.Row="3" 
+                            HeightRequest="70">
               <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
                                FontFamily="PatrickFont"
-                               VerticalOptions="StartAndExpand"
+                              HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="Center"
                                HorizontalTextAlignment="Center"/>
             </Grid>
-          </StackLayout>
-        </StackLayout>
+          </Grid>
+        </pancake:PancakeView>
       </tabs:ViewSwitcher>
-    </StackLayout>
+    
       <StackLayout  IsVisible="{Binding IsBusy}"
                     HorizontalOptions="Center"
+                    Grid.RowSpan="4"
                            VerticalOptions="Center">
         <ActivityIndicator Color="Red"
                            HorizontalOptions="Center"
