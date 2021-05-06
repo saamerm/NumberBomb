@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Analytics;
 using Newtonsoft.Json;
 using NumberBomb.Enums;
 using NumberBomb.Helper;
+using NumberBomb.Models;
 using Plugin.StoreReview;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
@@ -77,7 +78,9 @@ namespace NumberBomb.ViewModels
       var requestContent = new StringContent(jsonString);
       var response = await client.PostAsync(url, requestContent);
       var result = await response.Content.ReadAsStringAsync();
-      var scoreItems = JsonConvert.DeserializeObject<List<ScoreItem>>(result);
+      Console.WriteLine(result);
+      // TODO: Us this to enhance the message to check if the user is first
+      //var scoreResponse = JsonConvert.DeserializeObject<PostScoreResponse>(result);
     }
     private void NoCommandExcute(object obj)
     {
