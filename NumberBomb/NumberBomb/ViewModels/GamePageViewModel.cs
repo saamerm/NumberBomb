@@ -16,7 +16,7 @@ namespace NumberBomb.ViewModels
         public string _gamerTagName;
         public string _image;
         public int _score;
-        public int _newScore;
+        public int _highestScore;
         public int RandomNumber;
         public int IncorrectNumber1;
         public int IncorrectNumber2;
@@ -38,6 +38,9 @@ namespace NumberBomb.ViewModels
         public ICommand BackButtonClicked { get; set; }
         public Action<bool> OnCheckFailed { get; set; }
         public bool IsPlaying { get; set; }
+        public int _olderEasyHighScore;
+        public int _olderMediumHighScore;
+        public int _olderHardHighScore;
         public string LoseMessage { get; set; }
         Random _randomNumberGenrator;
 
@@ -115,7 +118,7 @@ namespace NumberBomb.ViewModels
             _randomNumberGenrator = new Random();
             MinimumLimit = 1;
             MaximumLimit = 100;
-            GenerateNumber();
+            GenerateRandomNumber();
             SetChances();
             _score = Preferences.Get("_chances", 0);
             CloudImage = "cloud.png";
@@ -147,22 +150,22 @@ namespace NumberBomb.ViewModels
         await audio.PlayFromAssembly("music.mp3", typeof(BaseViewModel).Assembly);
       }
     }
-    private void GenerateNumber()
+    private void GenerateRandomNumber()
         {
             var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
 
             if (difficulitylevel == (Difficulty.Easy.ToString()))
             {
-                RandomNumber = _randomNumberGenrator.Next(100) + 1;
+                RandomNumber = _randomNumberGenrator.Next(99) + 1;
             }
             else
             {
-                RandomNumber = _randomNumberGenrator.Next(100) + 1;
-                IncorrectNumber1 = _randomNumberGenrator.Next(100) + 1;
-                IncorrectNumber2 = _randomNumberGenrator.Next(100) + 1;
-                IncorrectNumber3 = _randomNumberGenrator.Next(100) + 1;
-                IncorrectNumber4 = _randomNumberGenrator.Next(100) + 1;
-                IncorrectNumber5 = _randomNumberGenrator.Next(100) + 1;
+                RandomNumber = _randomNumberGenrator.Next(99) + 1;
+                IncorrectNumber1 = _randomNumberGenrator.Next(99) + 1;
+                IncorrectNumber2 = _randomNumberGenrator.Next(99) + 1;
+                IncorrectNumber3 = _randomNumberGenrator.Next(99) + 1;
+                IncorrectNumber4 = _randomNumberGenrator.Next(99) + 1;
+                IncorrectNumber5 = _randomNumberGenrator.Next(99) + 1;
             }
         }
 
@@ -214,7 +217,7 @@ namespace NumberBomb.ViewModels
         {
             MaximumLimit = 100;
             MinimumLimit = 1;
-            RandomNumber = _randomNumberGenrator.Next(100) + 1;
+            GenerateRandomNumber();
             SetChances();
             CloudImage = "cloud.png";
             Hint = "Please enter a number between 1 - 100";
@@ -224,12 +227,28 @@ namespace NumberBomb.ViewModels
 
         private async void RefreshIconCommandExecute(object obj)
         {
-            if (ChancesRemaining < 10)
+            var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+
+            if (difficulitylevel == (Difficulty.Hard.ToString()))
             {
-                var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
-                if (response == true)
+                if (ChancesRemaining < 5)
                 {
-                    Reset();
+                    var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
+                    if (response == true)
+                    {
+                        Reset();
+                    }
+                }
+            }
+            else
+            {
+                if (ChancesRemaining < 10)
+                {
+                    var response = await App.Current.MainPage.DisplayAlert("Do you want to restart?", "", "Restart", "Cancel");
+                    if (response == true)
+                    {
+                        Reset();
+                    }
                 }
             }
         }
@@ -264,32 +283,52 @@ namespace NumberBomb.ViewModels
             PreviousGuess = GuessedValue;
             if (RandomNumber == GuessedValue)
             {
-                CorrectInput();
+                ProcessCorrectInput();
             }
             else
             {
-                await IncorrectInput();
+                await ProcessIncorrectInput();
             }
         }
 
-        private void CorrectInput()
+        private void ProcessCorrectInput()
         {
-            _score = Preferences.Get("_chances", 0);
-            if (ChancesRemaining > _score)
+            var difficulitylevel = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+            _score = Preferences.Get("_chances", 0);            
+
+            if (difficulitylevel == (Difficulty.Easy.ToString()))
             {
-                Preferences.Set("_chances", ChancesRemaining);
-                _newScore = Preferences.Get("_chances", 0);
+                _olderEasyHighScore = Preferences.Get("HighestEasyScore", 0);
+                if (ChancesRemaining > _olderEasyHighScore)
+                {
+                    Preferences.Set("HighestEasyScore", ChancesRemaining);
+                }
+                 _highestScore = Preferences.Get("HighestEasyScore", 0);       
+            }
+            else if (difficulitylevel == (Difficulty.Medium.ToString()))
+            {
+                _olderMediumHighScore = Preferences.Get("HighestMediumScore", 0);
+                if (ChancesRemaining > _olderMediumHighScore)
+                {
+                    Preferences.Set("HighestMediumScore", ChancesRemaining);
+                }
+                _highestScore = Preferences.Get("HighestMediumScore", 0);
             }
             else
             {
-                _newScore = Preferences.Get("_chances", 0);
+                _olderHardHighScore = Preferences.Get("HighestHardScore", 0);
+                if (ChancesRemaining > _olderHardHighScore)
+                {
+                    Preferences.Set("HighestHardScore", ChancesRemaining);
+                }
+                _highestScore = Preferences.Get("HighestHardScore", 0);
+                
             }
-
-            App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _newScore, _gamerTagName));
+            App.Current.MainPage.Navigation.PushAsync(new WinPage(ChancesRemaining, _highestScore, _gamerTagName));
             Reset();
         }
 
-        private async Task IncorrectInput()
+        private async Task ProcessIncorrectInput()
         {
             //if medium or hard and the user chose one of the 5 wrong number push to the losepage
 

@@ -166,7 +166,7 @@
             </CollectionView>
             <Grid 
                             HeightRequest="110">
-              <Label Text="{Binding message}" 
+              <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
@@ -258,7 +258,7 @@
             </CollectionView>
             <Grid 
                             HeightRequest="110">
-              <Label Text="{Binding message}" 
+              <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
@@ -350,7 +350,7 @@
             </CollectionView>
             <Grid 
                             HeightRequest="110">
-              <Label Text="{Binding message}" 
+              <Label Text="{Binding Message}" 
                                FontSize="20"
                                Grid.Column="0"
                                TextColor="Black"
