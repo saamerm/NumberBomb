@@ -32,6 +32,8 @@ namespace NumberBomb.Behaviours
     {
       base.OnAttachedTo(bindable);
       Bindable = bindable;
+      Bindable.BindingContextChanged -= OnBindingContextChanged;
+      Bindable.SelectedTabIndexChanged -= OnCheckedChanged;
       Bindable.BindingContextChanged += OnBindingContextChanged;
       Bindable.SelectedTabIndexChanged += OnCheckedChanged;
     }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
+using NumberBomb.Enums;
 using NumberBomb.Helper;
 using Sharpnado.Tabs;
 using Xamarin.Essentials;
@@ -18,7 +19,18 @@ namespace NumberBomb.ViewModels
   {
     public List<ScoreItem> _scoreItems;
     public event PropertyChangedEventHandler PropertyChanged;
-    public string message { get; set; }
+
+    private string _message;
+    public string Message
+    {
+      get => _message;
+      set
+      {
+        _message = value;
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Message)));
+      }
+    }
+
     public int _score;
     public List<ScoreItem> ScoreItems
     {
@@ -54,39 +66,48 @@ namespace NumberBomb.ViewModels
     }
     public LeaderboardPageViewModel()
     {
-      _score = Preferences.Get("_chances", 0);
+      _score = Preferences.Get("HighestEasyScore", 0);
+      GenerateMessage();
       ScoreItems = new List<ScoreItem>();
       BackButtonClicked = new Command(BackButtonClickedCommandExecute);
       TabSelectedCommand = new Command(TabSelectedCommandExcute);
-      GetBoardData("Easy");
-      message = "Your best score is " + _score + " !";
+      Task.Run(async () => await GetBoardData("Easy"));
     }
 
-    private void TabSelectedCommandExcute(object obj)
+    private void GenerateMessage()
+    {
+      Message = "Your best score is " + _score + " !";
+    }
+
+    private async void TabSelectedCommandExcute(object obj)
     {
       var index = obj as TabHostView;
       SelectedViewModelIndex = index.SelectedIndex;
       if (SelectedViewModelIndex == 0)
       {
         Difficulity = "Easy";
+        _score = Preferences.Get("HighestEasyScore", 0);
       }
       else if (SelectedViewModelIndex == 1)
       {
         Difficulity = "Medium";
+        _score = Preferences.Get("HighestMediumScore", 0);
       }
       else
       {
         Difficulity = "Hard";
+        _score = Preferences.Get("HighestHardScore", 0);
       }
+      GenerateMessage();
       ScoreItems.Clear();
-      GetBoardData(Difficulity);
+      await GetBoardData(Difficulity);
     }
 
     private void BackButtonClickedCommandExecute(object obj)
     {
       Application.Current.MainPage.Navigation.PopAsync();
     }
-    private async void GetBoardData(string difficulity)
+    private async Task GetBoardData(string difficulity)
     {
 
       try
