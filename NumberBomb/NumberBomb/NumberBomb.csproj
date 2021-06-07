@@ -56,29 +56,4 @@
     <SharedImage Include="volume_off_24px.svg" />
     <SharedImage Include="volume_up_24px.svg" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="GamerTagPage.xaml.cs">
-      <DependentUpon>GamerTagPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="WinPage.xaml.cs">
-      <DependentUpon>WinPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="LosePage.xaml.cs">
-      <DependentUpon>LosePage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="AppReviewPopupPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="FeedbackPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="ThanksPopupPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
 </Project>
