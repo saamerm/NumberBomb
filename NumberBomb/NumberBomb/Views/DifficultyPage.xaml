@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:NumberBomb"
     x:Class="NumberBomb.DifficultyPage"
     BackgroundColor="#fdfdfd"
     NavigationPage.HasBackButton="False">
@@ -58,6 +59,7 @@
                       HeightRequest="46"
                       Text="Medium"
                       TextColor="White"
+                      IsVisible="{Binding ShouldShow}"
                       HorizontalOptions="Center"
                       VerticalOptions="Center"
                       BackgroundColor="Black"
@@ -73,6 +75,7 @@
                       HeightRequest="46"
                       Text="Hard"
                       TextColor="White"
+                      IsVisible="{Binding ShouldHide}"
                       HorizontalOptions="Center"
                       VerticalOptions="Center"
                       BackgroundColor="Black"

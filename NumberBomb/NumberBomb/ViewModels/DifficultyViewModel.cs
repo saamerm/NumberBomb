@@ -10,12 +10,15 @@ namespace NumberBomb.ViewModels
     {
         public ICommand DiffcultyCommand { get; set; }
         public ICommand BackButtonClicked { get; set; }
+        public bool ShouldShow { get; set; }
+        public bool ShouldHide { get; set; }
 
         public DifficultyViewModel()
         {
             DiffcultyCommand = new Command<string>(DifficultyCommandExcute);
             BackButtonClicked = new Command(BackButtonClickedCommandExecute);
-
+            ShouldShow = (Preferences.Get("HighestEasyScore", 0) == 0) ? false : true;
+            ShouldHide = (Preferences.Get("HighestMediumScore", 0) != 0) ? true : false;
         }
 
         private void BackButtonClickedCommandExecute(object obj)
