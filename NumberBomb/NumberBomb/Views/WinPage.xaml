@@ -38,7 +38,7 @@
                        FontFamily="PatrickFont"
                        Margin="0,40,0,0"
                        HorizontalTextAlignment="Center"/>
-                <Label Text="You have successfully defused the bomb"
+                <Label Text="{Binding ChangeText}"
                        FontSize="22"
                        FontFamily="PatrickFont"
                        Padding="13,40,13,0"
