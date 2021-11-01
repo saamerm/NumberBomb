@@ -27,7 +27,7 @@ namespace NumberBomb.ViewModels
     public ICommand NoCommand { get; set; }
     public string ChangeText { get; set; }
     public string _levelWon;
-    public string _levelreached;
+    public string _levelReached;
 
     public WinPageViewModel(int chancesRemaining, string gamerTagName)
     {
@@ -37,8 +37,8 @@ namespace NumberBomb.ViewModels
       MainCommand = new Command(MainCommandExecute);
       YesCommand = new Command(YesCommandExcute);
       NoCommand = new Command(NoCommandExcute);
+      ChangeText = "You have successfully defused the bomb";
       PostApiCall();
-      _levelreached = Preferences.Get("LevelReached", string.Empty);
       if (Preferences.ContainsKey("numberOfVisit"))
       {
         NumberOfVisit = Preferences.Get("numberOfVisit", NumberOfVisit);
@@ -48,48 +48,26 @@ namespace NumberBomb.ViewModels
         NumberOfVisit = 1;
       }
 
+      // This value is set in the Difficulty Selection page, so we dont need to worry about this
       _levelWon = Preferences.Get("difficulty", Difficulty.Easy.ToString());
-      _levelreached = Preferences.Get("LevelReached", "Easy");
+      _levelReached = Preferences.Get("LevelReached", "Easy");
 
-      if (_levelWon == "Easy" && _levelreached == "Easy")
+      // If it's the first you win an easy game
+      if (_levelWon == "Easy" && _levelReached == "Easy")
       {
         ChangeText = "You have unlocked Medium difficulty mode";
         Preferences.Set("LevelReached", "Medium");
-        return;
       }
-      else if(_levelWon == "Easy" && _levelreached != "Easy")
-      {
-        ChangeText = "You have successfully defused the bomb";
-        Preferences.Set("LevelReached", "Medium");
-        return;
-      }
-
-      if(_levelWon == "Medium" && _levelreached == "Medium" )
+      else if(_levelWon == "Medium" && _levelReached == "Medium" )
       {
         ChangeText = "You have unlocked Hard difficulty mode";
         Preferences.Set("LevelReached", "Hard");
-        return;
       }
-      else if (_levelWon == "Medium" && _levelreached != "Medium")
-      {
-        ChangeText = "You have successfully defused the bomb";
-        Preferences.Set("LevelReached", "Hard");
-        return;
-      }
-
-      if (_levelWon == "Hard" && _levelreached == "Hard")
+      else if (_levelWon == "Hard" && _levelReached == "Hard")
       {
         ChangeText = "You have unlocked the Bonus round";
         Preferences.Set("LevelReached", "Bonus");
-        return;
       }
-      else if (_levelWon == "Hard" && _levelreached != "Hard")
-      {
-        ChangeText = "You have successfully defused the bomb";
-        Preferences.Set("LevelReached", "Bonus");
-        return;
-      }
-
       CheckNumberOfVisit();
     }
 
