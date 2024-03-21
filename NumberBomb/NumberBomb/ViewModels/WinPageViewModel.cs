@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,6 +25,10 @@ namespace NumberBomb.ViewModels
     public int NumberOfVisit { get; set; }
     public ICommand YesCommand { get; set; }
     public ICommand NoCommand { get; set; }
+    public string ChangeText { get; set; }
+    public string _levelWon;
+    public string _levelReached;
+
     public WinPageViewModel(int chancesRemaining, string gamerTagName)
     {
       finalScore = chancesRemaining;
@@ -32,6 +37,7 @@ namespace NumberBomb.ViewModels
       MainCommand = new Command(MainCommandExecute);
       YesCommand = new Command(YesCommandExcute);
       NoCommand = new Command(NoCommandExcute);
+      ChangeText = "You have successfully defused the bomb";
       PostApiCall();
       if (Preferences.ContainsKey("numberOfVisit"))
       {
@@ -40,6 +46,27 @@ namespace NumberBomb.ViewModels
       else
       {
         NumberOfVisit = 1;
+      }
+
+      // This value is set in the Difficulty Selection page, so we dont need to worry about this
+      _levelWon = Preferences.Get("difficulty", Difficulty.Easy.ToString());
+      _levelReached = Preferences.Get("LevelReached", "Easy");
+
+      // If it's the first you win an easy game
+      if (_levelWon == "Easy" && _levelReached == "Easy")
+      {
+        ChangeText = "You have unlocked Medium difficulty mode";
+        Preferences.Set("LevelReached", "Medium");
+      }
+      else if(_levelWon == "Medium" && _levelReached == "Medium" )
+      {
+        ChangeText = "You have unlocked Hard difficulty mode";
+        Preferences.Set("LevelReached", "Hard");
+      }
+      else if (_levelWon == "Hard" && _levelReached == "Hard")
+      {
+        ChangeText = "You have unlocked the Bonus round";
+        Preferences.Set("LevelReached", "Bonus");
       }
       CheckNumberOfVisit();
     }
